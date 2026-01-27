@@ -1,6 +1,6 @@
 
 "use client";
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { gsap } from 'gsap';
@@ -19,10 +19,10 @@ export default function HeroSection() {
   const [showPreloader, setShowPreloader] = useState(true);
 
   // Preloader completion handler
-  const handlePreloaderComplete = () => {
+  const handlePreloaderComplete = useCallback(() => {
     setShowPreloader(false);
     // Trigger entrance animations here if not already automated
-  };
+  }, []);
 
   useEffect(() => {
     // Robust video loading check
@@ -151,7 +151,7 @@ export default function HeroSection() {
 
       {/* Elegant Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-50">
-         <div className="w-[1px] h-12 bg-white/50"></div>
+         <div className="w-px h-12 bg-white/50"></div>
          <span className="text-[9px] uppercase tracking-[0.3em] text-white">Scroll</span>
       </div>
 

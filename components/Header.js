@@ -240,7 +240,7 @@ export default function Header() {
             <div className="h-20 sm:h-24"></div>
 
             {/* Navigation Links Area */}
-            <div className={`flex flex-col items-start ${isMobileMenuOpen ? 'overflow-y-auto' : ''} space-y-6 sm:space-y-8 w-full scrollbar-hide flex-grow pt-8`}>
+            <div className={`flex flex-col items-start ${isMobileMenuOpen ? 'overflow-y-auto' : ''} space-y-6 sm:space-y-8 w-full scrollbar-hide grow pt-8`}>
               {navLinks.map((item, idx) => (
                 <div key={item.name} className="flex flex-col items-start w-full group">
                   <Link 
