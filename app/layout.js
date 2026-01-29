@@ -16,8 +16,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL('http://localhost:3000'),
   title: "Tridev Labels - Precision Printing",
   description: "Excellence in label printing and packaging.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }) {
