@@ -1,5 +1,6 @@
 "use client";
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
@@ -7,6 +8,9 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isHoveringNav, setIsHoveringNav] = useState(false);
+  
+  const pathname = usePathname();
   const headerRef = useRef(null);
   const spotlightRef = useRef(null);
   const navRef = useRef(null);
@@ -30,6 +34,14 @@ export default function Header() {
     { name: 'Our Blogs', href: '/blog' },
   ];
 
+  // Close menus on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsServicesOpen(false);
+    // Also reset spotlight on clear
+    gsap.to(spotlightRef.current, { opacity: 0, duration: 0.1 });
+  }, [pathname]);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 20;
@@ -50,11 +62,16 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isScrolled]);
 
+  // Robust Dropdown Animation
   useEffect(() => {
+    if (!dropdownRef.current) return;
+    
+    gsap.killTweensOf(dropdownRef.current);
+    
     if (isServicesOpen) {
       gsap.fromTo(dropdownRef.current,
         { opacity: 0, scale: 0.98, y: 10, visibility: 'hidden' },
-        { opacity: 1, scale: 1, y: 0, visibility: 'visible', duration: 0.5, ease: "power4.out" }
+        { opacity: 1, scale: 1, y: 0, visibility: 'visible', duration: 0.4, ease: "power3.out" }
       );
     } else {
       gsap.to(dropdownRef.current, {
@@ -62,7 +79,7 @@ export default function Header() {
         scale: 0.98,
         y: 10,
         visibility: 'hidden',
-        duration: 0.3,
+        duration: 0.2,
         ease: "power2.in"
       });
     }
@@ -70,23 +87,30 @@ export default function Header() {
 
   // Spotlight Hover Effect (Desktop only)
   const handleMouseEnter = (e) => {
+    setIsHoveringNav(true);
     const target = e.currentTarget;
     const rect = target.getBoundingClientRect();
     const navRect = navRef.current.getBoundingClientRect();
     
+    gsap.killTweensOf(spotlightRef.current);
     gsap.to(spotlightRef.current, {
       width: rect.width,
       x: rect.left - navRect.left,
       opacity: 1,
-      duration: 0.3,
-      ease: "power2.out"
+      duration: 0.4,
+      ease: "power3.out"
     });
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeaveNav = () => {
+    setIsHoveringNav(false);
+    // Only fade out if we aren't keeping the menu open (which might imply we are in the dropdown, 
+    // but the dropdown is IN the nav, so leaving nav means leaving both).
+    gsap.killTweensOf(spotlightRef.current);
     gsap.to(spotlightRef.current, {
       opacity: 0,
-      duration: 0.2
+      duration: 0.3,
+      ease: "power2.out"
     });
   };
 
@@ -120,7 +144,7 @@ export default function Header() {
                style={{ height: '100%' }}
             ></div>
 
-            <div className="flex relative z-10" onMouseLeave={handleMouseLeave}>
+            <div className="flex relative z-10" onMouseLeave={handleMouseLeaveNav}>
               {navLinks.map((item) => (
                 <div 
                   key={item.name}

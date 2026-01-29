@@ -1,8 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-
-import CursorFollower from "@/components/CursorFollower";
+import Header from "@/components/layout/Header";
+import CursorFollower from "@/components/layout/CursorFollower";
+import FooterSection from "@/components/layout/FooterSection";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,9 +28,11 @@ export default function RootLayout({ children }) {
       >
         {/* <CursorFollower /> */}
         <Header />
+        <ScrollToTop />
         <main className="">
           {children}
         </main>
+              <FooterSection />
       </body>
     </html>
   );

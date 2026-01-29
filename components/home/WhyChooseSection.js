@@ -3,13 +3,13 @@
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function WhyChooseSection() {
   const containerRef = useRef(null);
   const contentRef = useRef(null);
-  const [activeStat, setActiveStat] = useState(0);
 
   const stats = [
     { value: "16+", label: "Years of Excellence" },
@@ -100,27 +100,20 @@ export default function WhyChooseSection() {
         <div className="stats-container max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {stats.map((stat, index) => (
-              <div 
+              <motion.div 
                 key={index}
                 className="stat-item group cursor-pointer"
-                onMouseEnter={() => setActiveStat(index)}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <div className={`bg-white/5 backdrop-blur-md rounded-xl p-6 md:p-8 border transition-all duration-300 ${
-                  activeStat === index 
-                    ? 'border-[#E32219]/70 shadow-lg shadow-[#E32219]/20 bg-white/10' 
-                    : 'border-white/10 hover:border-white/20'
-                }`}>
-                  <div className={`text-4xl md:text-5xl font-light mb-2 transition-all duration-300 ${
-                    activeStat === index ? 'text-[#E32219]' : 'text-white'
-                  }`}>
+                <div className="bg-white/5 rounded-xl p-6 md:p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
+                  <div className="text-4xl md:text-5xl font-light mb-2 transition-all duration-300 group-hover:text-[#E32219] text-white">
                     {stat.value}
                   </div>
-                  <div className={`h-px w-8 mb-3 group-hover:w-12 transition-all duration-300 ${
-                    activeStat === index ? 'bg-[#E32219]' : 'bg-white/40'
-                  }`}></div>
+                  <div className="h-px w-8 mb-3 group-hover:w-12 transition-all duration-300 bg-white/40 group-hover:bg-[#E32219]"></div>
                   <div className="text-xs font-bold uppercase tracking-widest text-gray-400">{stat.label}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

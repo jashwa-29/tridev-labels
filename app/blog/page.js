@@ -1,81 +1,225 @@
+"use client";
+
+import { useEffect, useState, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowUpRight, Loader2, Calendar, User, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import { blogService } from '@/services/blog.service';
+import PageHeader from '@/components/common/PageHeader';
 
-// Force dynamic rendering since we are fetching data that might change
-export const dynamic = 'force-dynamic';
+gsap.registerPlugin(ScrollTrigger);
 
-async function getBlogs() {
-  // Assuming backend is running on localhost:5000
-  const res = await fetch('http://localhost:5000/api/blogs', { cache: 'no-store' });
-  
-  if (!res.ok) {
-    throw new Error('Failed to fetch blogs');
-  }
-  
-  return res.json();
-}
+export default function BlogListingPage() {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const containerRef = useRef(null);
+  const headerRef = useRef(null);
 
-export const metadata = {
-  title: 'Blog - Tridev Labels',
-  description: 'Read our latest insights and updates.',
-};
+  const BLOGS_PER_PAGE = 9;
 
-export default async function BlogListingPage() {
-  let blogs = [];
-  try {
-    const data = await getBlogs();
-    blogs = data.blogs || [];
-  } catch (error) {
-    console.error("Error loading blogs:", error);
-    return (
-      <div className="text-center py-10">
-        <h2 className="text-2xl font-bold text-red-600">Error loading blogs</h2>
-        <p>Please make sure the backend server is running.</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      setLoading(true);
+      try {
+        const data = await blogService.getAll(currentPage, BLOGS_PER_PAGE);
+        setBlogs(data.blogs || []);
+        setTotalPages(data.pages || 1);
+        
+        if (currentPage > 1 && containerRef.current) {
+           window.scrollTo({ top: containerRef.current.offsetTop - 100, behavior: 'smooth' });
+        }
+      } catch (error) {
+        console.error("Failed to load blogs", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (!loading && blogs.length > 0) {
+      const ctx = gsap.context(() => {
+        // Entrance animation matching home page rhythm
+        gsap.from(".blog-card-item", {
+          y: 60,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 85%"
+          }
+        });
+
+        // Header entrance
+        if (headerRef.current) {
+          gsap.from(headerRef.current.children, {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
+          });
+        }
+      }, containerRef);
+      return () => ctx.revert();
+    }
+  }, [loading, blogs]);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
 
   return (
-    <div className="container mx-auto px-6 py-12 pt-32">
-      <h1 className="text-4xl font-bold mb-8 text-center">Latest Blogs</h1>
-      
-      {blogs.length === 0 ? (
-        <p className="text-center text-gray-500">No blogs found.</p>
-      ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
-            <div key={blog._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              {blog.featuredImage && (
-                <div className="relative h-48 w-full">
-                  <Image 
-                    src={blog.featuredImage} 
-                    alt={blog.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              )}
-              <div className="p-6">
-                <div className="text-sm text-blue-600 font-semibold mb-2">{blog.category}</div>
-                <h2 className="text-xl font-bold mb-2 line-clamp-2">
-                  <Link href={`/blog/${blog.slug}`} className="hover:text-blue-600 transition-colors">
-                    {blog.title}
-                  </Link>
-                </h2>
-                <p className="text-gray-600 mb-4 line-clamp-3">
-                  {blog.metaDescription || "Click to read more..."}
-                </p>
-                <div className="flex justify-between items-center text-sm text-gray-500">
-                  <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
-                  <Link href={`/blog/${blog.slug}`} className="font-semibold text-blue-600 hover:underline">
-                    Read More &rarr;
-                  </Link>
-                </div>
+    <main className="min-h-screen bg-white">
+      {/* Home-Page Style Background Pattern */}
+      <div className="fixed inset-0 opacity-[0.03] pointer-events-none z-0" 
+           style={{
+             backgroundImage: `linear-gradient(45deg, #000 1px, transparent 1px),
+                                 linear-gradient(-45deg, #000 1px, transparent 1px)`,
+             backgroundSize: '40px 40px'
+           }} 
+      />
+
+      <PageHeader 
+        title="Journal" 
+        subtitle="Industrial" 
+        highlightSubtitle="Insights"
+        breadcrumb="Journal"
+        description="Exploring the intersections of precision engineering, sustainable materials, and brand aesthetics."
+      />
+
+      <section ref={containerRef} className="pb-32 relative z-10">
+        <div className="container mx-auto px-4 md:px-12 lg:px-20 py-20">
+          
+          {/* Tridev Signature Section Header (Mirrored from Home BlogsSection) */}
+          {!loading && blogs.length > 0 && (
+            <div ref={headerRef} className="max-w-4xl mx-auto mb-20 text-center">
+              <div className="inline-flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-[#E32219]"></div>
+                <span className="text-xs font-bold uppercase tracking-[0.4em] text-gray-400">
+                  The Knowledge Base
+                </span>
+                <div className="h-px w-8 bg-[#E32219]"></div>
               </div>
+              
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-8 leading-tight tracking-tighter">
+                Explore Our <span className="font-medium text-[#E32219]">Latest</span> Thinking
+              </h2>
             </div>
-          ))}
+          )}
+
+          {loading ? (
+            <div className="flex flex-col justify-center items-center h-[40vh] space-y-4">
+              <Loader2 className="w-10 h-10 text-[#E32219] animate-spin stroke-[1.5px]" />
+              <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Decoding Data...</p>
+            </div>
+          ) : blogs.length === 0 ? (
+            <div className="text-center py-20">
+              <h3 className="text-2xl font-light text-gray-400 tracking-tight">Archives currently unpopulated.</h3>
+            </div>
+          ) : (
+            <>
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+                 {blogs.map((blog) => (
+                   <Link key={blog._id} href={`/blog/${blog.slug}`} className="blog-card-item group block cursor-pointer">
+                     <article className="flex flex-col h-full">
+                       {/* High-End Image Container (Home Page Style) */}
+                       <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-gray-50 shadow-xl shadow-black/3 mb-8">
+                         <motion.img 
+                           src={blog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1000"} 
+                           alt={blog.title} 
+                           className="w-full h-full object-cover brightness-95 group-hover:brightness-105 group-hover:scale-110 transition-all duration-1000"
+                         />
+                         
+                         {/* Category Badge (Home Page Style) */}
+                         <div className="absolute top-6 left-6 px-4 py-1.5 bg-[#E32219] text-white text-[9px] font-bold uppercase tracking-[0.2em] rounded-sm transform -translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                           {blog.category || 'Article'}
+                         </div>
+                       </div>
+
+                       {/* Refined Content */}
+                       <div className="flex-1 flex flex-col">
+                         <div className="flex items-center gap-6 text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-4">
+                           <div className="flex items-center gap-2">
+                             <Calendar size={12} className="text-[#E32219]" />
+                             <span>{blog.publishedDate ? format(new Date(blog.publishedDate), 'MMM dd, yyyy') : 'Recent'}</span>
+                           </div>
+                           <div className="flex items-center gap-2">
+                             <User size={12} className="text-[#E32219]" />
+                             <span>{blog.author || 'Tridev Team'}</span>
+                           </div>
+                         </div>
+
+                         <h3 className="text-2xl md:text-3xl font-light text-gray-900 group-hover:text-[#E32219] transition-colors duration-400 mb-6 leading-tight tracking-tight line-clamp-2">
+                           {blog.title}
+                         </h3>
+
+                         <p className="text-gray-500 font-light leading-relaxed mb-8 line-clamp-3 text-base flex-1">
+                           {blog.metaDescription || "Click to read full article exploration into the nuances of modern production and aesthetic precision."}
+                         </p>
+
+                         <div className="mt-auto">
+                            <span className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-gray-900 group-hover:gap-5 transition-all duration-300 border-b border-gray-100 group-hover:border-[#E32219]/30 pb-2 w-fit">
+                               Read Full Article <ArrowUpRight size={14} className="text-[#E32219] transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                            </span>
+                         </div>
+                       </div>
+                     </article>
+                   </Link>
+                 ))}
+               </div>
+
+               {/* Home-Page Style Pagination */}
+               {totalPages > 1 && (
+                 <div className="mt-32 flex items-center justify-center gap-4">
+                    <button 
+                       onClick={() => handlePageChange(currentPage - 1)}
+                       disabled={currentPage === 1}
+                       className="p-5 rounded-full border border-gray-100 hover:border-[#E32219] text-gray-400 hover:text-[#E32219] transition-all disabled:opacity-20 disabled:cursor-not-allowed group shadow-sm hover:shadow-md"
+                    >
+                       <ChevronLeft className="w-5 h-5 transform group-hover:-translate-x-0.5 transition-transform" />
+                    </button>
+                    
+                    <div className="flex items-center gap-3">
+                       {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                          <button
+                             key={pageNum}
+                             onClick={() => handlePageChange(pageNum)}
+                             className={`w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500
+                               ${currentPage === pageNum 
+                                  ? 'bg-[#E32219] text-white shadow-xl shadow-[#E32219]/20' 
+                                  : 'bg-white text-gray-400 hover:bg-gray-50 border border-gray-100 hover:border-gray-200'}`}
+                          >
+                             {String(pageNum).padStart(2, '0')}
+                          </button>
+                       ))}
+                    </div>
+
+                    <button 
+                       onClick={() => handlePageChange(currentPage + 1)}
+                       disabled={currentPage === totalPages}
+                       className="p-5 rounded-full border border-gray-100 hover:border-[#E32219] text-gray-400 hover:text-[#E32219] transition-all disabled:opacity-20 disabled:cursor-not-allowed group shadow-sm hover:shadow-md"
+                    >
+                       <ChevronRight className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" />
+                    </button>
+                 </div>
+               )}
+            </>
+          )}
         </div>
-      )}
-    </div>
+      </section>
+    </main>
   );
 }
+
+

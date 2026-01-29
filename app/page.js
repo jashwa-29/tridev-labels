@@ -1,14 +1,12 @@
-import SolutionsSection from '@/components/SolutionsSection';
-import AboutUs from '@/components/AboutUs';
-
-import FinishesGallery from '@/components/FinishesGallery';
-import WhyChooseSection from '@/components/WhyChooseSection';
-import OurProcessSection from '@/components/OurProcess';
-import HistoryTimeline from '@/components/HistoryTimeline';
-import Testimonials from '@/components/Testimonials';
-import BlogsSection from '@/components/BlogsSection';
-import FooterSection from '@/components/FooterSection';
-import HeroSection from '@/components/HeroSection';
+import SolutionsSection from '@/components/home/SolutionsSection';
+import AboutUs from '@/components/home/AboutUs';
+import FinishesGallery from '@/components/home/FinishesGallery';
+import WhyChooseSection from '@/components/home/WhyChooseSection';
+import OurProcessSection from '@/components/home/OurProcess';
+import Testimonials from '@/components/home/Testimonials';
+import BlogsSection from '@/components/home/BlogsSection';
+import FooterSection from '@/components/layout/FooterSection';
+import HeroSection from '@/components/home/HeroSection';
 
 export default function Home() {
   return (
@@ -22,7 +20,7 @@ export default function Home() {
       <OurProcessSection />
       <Testimonials />
       <BlogsSection />
-      <FooterSection />
+
     </div>
   );
 }

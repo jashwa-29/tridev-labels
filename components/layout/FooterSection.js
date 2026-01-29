@@ -183,12 +183,12 @@ export default function FooterSection() {
 
           <div className="flex items-center gap-6">
             <span className="text-[10px] font-bold text-gray-600 uppercase tracking-[0.4em] hidden sm:block">Sustainable • Precise • Professional</span>
-            <button 
+            {/* <button 
               onClick={scrollToTop}
               className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#E32219] hover:bg-[#E32219] transition-all duration-500 group"
             >
               <ArrowUp size={20} className="transform group-hover:-translate-y-1 transition-transform" />
-            </button>
+            </button> */}
           </div>
         </div>
 

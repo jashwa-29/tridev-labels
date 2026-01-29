@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Preloader from './Preloader';
+import Preloader from '../layout/Preloader';
 
 gsap.registerPlugin(ScrollTrigger);
 
