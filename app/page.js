@@ -1,12 +1,13 @@
 import SolutionsSection from '@/components/home/SolutionsSection';
 import AboutUs from '@/components/home/AboutUs';
-import FinishesGallery from '@/components/home/FinishesGallery';
-import WhyChooseSection from '@/components/home/WhyChooseSection';
-import OurProcessSection from '@/components/home/OurProcess';
-import Testimonials from '@/components/home/Testimonials';
-import BlogsSection from '@/components/home/BlogsSection';
-import FooterSection from '@/components/layout/FooterSection';
 import HeroSection from '@/components/home/HeroSection';
+import dynamic from 'next/dynamic';
+
+const FinishesGallery = dynamic(() => import('@/components/home/FinishesGallery'), { ssr: true });
+const WhyChooseSection = dynamic(() => import('@/components/home/WhyChooseSection'), { ssr: true });
+const OurProcessSection = dynamic(() => import('@/components/home/OurProcess'), { ssr: true });
+const Testimonials = dynamic(() => import('@/components/home/Testimonials'), { ssr: true });
+const BlogsSection = dynamic(() => import('@/components/home/BlogsSection'), { ssr: true });
 
 export default function Home() {
   return (

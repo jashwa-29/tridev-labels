@@ -1,9 +1,17 @@
 "use client";
 
 import PageHeader from '@/components/common/PageHeader';
-import ContactSection from '@/components/contact/ContactSection';
-import ContactMap from '@/components/contact/ContactMap';
-import FooterSection from '@/components/layout/FooterSection';
+import dynamic from 'next/dynamic';
+
+const ContactSection = dynamic(() => import('@/components/contact/ContactSection'), { 
+  ssr: true,
+  loading: () => <div className="h-96 bg-gray-50 animate-pulse" /> 
+});
+
+const ContactMap = dynamic(() => import('@/components/contact/ContactMap'), { 
+  ssr: false,
+  loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> 
+});
 
 export default function ContactPage() {
   return (

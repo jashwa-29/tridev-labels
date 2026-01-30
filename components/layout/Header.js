@@ -31,7 +31,7 @@ export default function Header() {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/#services', hasDropdown: true },
-    { name: 'Export', href: '/export-order' },
+    { name: 'Export', href: '/export' },
     { name: 'Our Blogs', href: '/blog' },
   ];
 

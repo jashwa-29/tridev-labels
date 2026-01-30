@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Instagram, Linkedin, Twitter, ArrowUp, Send, Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
 
 export default function FooterSection() {
   const scrollToTop = () => {
@@ -72,9 +73,11 @@ export default function FooterSection() {
           {/* Column 1: Brand Identity */}
           <div className="space-y-8">
             <Link href="/" className="inline-block">
-              <img 
+              <Image 
                 src="/tridev-logo.png" 
                 alt="Trridev Logo" 
+                width={180}
+                height={48}
                 className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
               />
             </Link>

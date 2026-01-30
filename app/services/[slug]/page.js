@@ -1,6 +1,11 @@
 import { notFound } from 'next/navigation';
 import { servicesData } from '@/lib/servicesData';
-import ServiceContent from '@/components/services/ServiceContent';
+import dynamic from 'next/dynamic';
+
+const ServiceContent = dynamic(() => import('@/components/services/ServiceContent'), {
+  ssr: true,
+  loading: () => <div className="min-h-screen bg-white animate-pulse" />
+});
 
 /**
  * Generate Metadata for each service page
@@ -27,8 +32,10 @@ export async function generateMetadata({ params }) {
 }
 
 /**
- * Static params generation for performance (Static Site Generation)
+ * Static params generation for performance (Static Site SSG)
  */
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return Object.keys(servicesData).map((slug) => ({
     slug: slug,

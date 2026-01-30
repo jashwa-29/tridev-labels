@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, Factory, ShieldCheck, ArrowRight, Layers, Box, Cpu } from 'lucide-react';
 import QuoteModal from '@/components/common/QuoteModal';
 import FooterSection from '@/components/layout/FooterSection';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,10 +117,12 @@ export default function ServiceContent({ service }) {
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-black">
          {/* Background Image with Parallax */}
          <div className="absolute inset-0 opacity-60">
-            <img 
+            <Image 
                ref={heroRef}
                src={service.heroImage || "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80"} 
                alt={service.title} 
+               fill
+               priority
                className="w-full h-full object-cover"
             />
          </div>
@@ -209,8 +212,10 @@ export default function ServiceContent({ service }) {
                {/* Right: Immersive Image Stage */}
                <div className="w-full lg:w-[55%] relative">
                   <div className="relative aspect-16/10 rounded-[32px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] group border-12 border-white">
-                     <img 
+                     <Image 
                         src={service.heroImage} 
+                        width={1200}
+                        height={750}
                         className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" 
                         alt="Production precision" 
                      />

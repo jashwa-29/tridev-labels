@@ -41,12 +41,13 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
+    if (showPreloader) return; // Wait for preloader
+
     const ctx = gsap.context(() => {
-      
       // Sophisticated Parallax
       gsap.to(bgRef.current, {
-        yPercent: 15, // Slower, more subtle movement
-        scale: 1.1,   // Slight "Ken Burns" continued scaling
+        yPercent: 15,
+        scale: 1.1,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -56,7 +57,7 @@ export default function HeroSection() {
         }
       });
 
-      // Text Parallax (slightly faster than BG for depth)
+      // Text Parallax
       gsap.to(textRef.current, {
         yPercent: -20,
         opacity: 0,
@@ -69,21 +70,19 @@ export default function HeroSection() {
         }
       });
 
-      // Entrance
+      // Entrance - Only runs after preloader
       const tl = gsap.timeline();
-      tl.from(bgRef.current, { scale: 1.2, duration: 2.5, ease: "power2.out" })
-        .from(".hero-line", {
-          y: 30,
-          opacity: 0,
-          duration: 1.5,
-          stagger: 0.2,
-          ease: "power3.out"
-        }, "-=2");
+      tl.fromTo(bgRef.current, { scale: 1.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 2.5, ease: "power2.out" })
+        .fromTo(".hero-line", 
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: "power3.out" }, 
+          "-=2"
+        );
 
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [showPreloader]); // Depend on showPreloader
 
   return (
     <div ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#050505]">
@@ -93,7 +92,7 @@ export default function HeroSection() {
 
       {/* Background Layer */}
       {/* Background Video Layer */}
-      <div ref={bgRef} className="absolute inset-0 z-0 h-[120%] -top-[10%] w-full">
+      <div ref={bgRef} className="absolute inset-0 z-0 h-[120%] -top-[10%] w-full" style={{ opacity: 0 }}>
         {/* Optimized Poster Image */}
         <Image
           src="/hero-bg-bright.png"
@@ -124,22 +123,22 @@ export default function HeroSection() {
       {/* Main Content - Centered & Clean */}
       <div ref={textRef} className="relative z-10 text-center max-w-5xl px-6">
         
-        <div className="hero-line mb-6 flex justify-center">
+        <div className="hero-line mb-6 flex justify-center" style={{ opacity: 0 }}>
           <span className="px-4 py-1.5 border border-[#E32219]/60 rounded-full text-[9px] md:text-[10px] font-medium uppercase tracking-[0.25em] text-white bg-[#E32219]/20 backdrop-blur-sm">
             Est. 2024 • Excellence in Print
           </span>
         </div>
 
-        <h1 className="hero-line text-4xl md:text-5xl lg:text-8xl font-medium tracking-tighter text-white mb-6 leading-none">
+        <h1 className="hero-line text-4xl md:text-5xl lg:text-8xl font-medium tracking-tighter text-white mb-6 leading-none" style={{ opacity: 0 }}>
           Precision Labeling <br />
           <span className="text-[#E32219] font-light">Defined.</span>
         </h1>
 
-        <p className="hero-line text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed mb-10">
+        <p className="hero-line text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed mb-10" style={{ opacity: 0 }}>
           We partner with brands to create exceptional packaging solutions through sustainable innovation and uncompromising quality.
         </p>
 
-        <div className="hero-line flex flex-col md:flex-row items-center justify-center gap-6">
+        <div className="hero-line flex flex-col md:flex-row items-center justify-center gap-6" style={{ opacity: 0 }}>
           <Link 
             href="/about"
             className="px-10 py-4 bg-[#E32219] text-white hover:bg-white hover:text-[#E32219] transition-colors duration-300 rounded-sm font-medium uppercase tracking-[0.2em] text-xs shadow-[0_0_20px_rgba(227,34,25,0.4)] hover:shadow-none"
