@@ -14,22 +14,22 @@ export default function Preloader({ onComplete }) {
       // Counter Animation
       const tl = gsap.timeline({
         onComplete: () => {
-          // Exit Animation
+          // Exit Animation - Snappy
           gsap.to(containerRef.current, {
             yPercent: -100,
-            duration: 1.2,
-            ease: "power4.inOut",
+            duration: 0.5,
+            ease: "circ.inOut",
             onComplete: onComplete
           });
         }
       });
 
-      // Animate counter from 0 to 100
+      // Animate counter - Ultra Fast
       tl.to(counterRef.current, {
         innerText: 100,
-        duration: 1.2, // Reduced from 2.5s for better Speed Index
+        duration: 0.6, 
         snap: { innerText: 1 },
-        ease: "power2.inOut",
+        ease: "none",
         onUpdate: function() {
           if (counterRef.current) {
             counterRef.current.innerHTML = Math.round(this.targets()[0].innerText) + "%";
@@ -37,13 +37,12 @@ export default function Preloader({ onComplete }) {
         }
       });
 
-      // Logo Reveal
-      tl.from(logoRef.current, {
-        scale: 0.9,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
-      }, "<");
+      // Logo Reveal - Synchronized
+      tl.fromTo(logoRef.current, 
+        { scale: 0.95, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" }, 
+        0
+      );
 
       // Text Reveal
       tl.from(textRef.current, {

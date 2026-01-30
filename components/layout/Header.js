@@ -18,13 +18,14 @@ export default function Header() {
   const dropdownRef = useRef(null);
   
   const services = [
-    { name: "Thermal Transfer", href: "/services/thermal-transfer", desc: "Luxury foils & finishing" },
-    { name: "Sustainable Labels", href: "/services/sustainable-eco-labels", desc: "Eco-friendly materials" },
-    { name: "Automotive & Smart", href: "/services/automotive-durable-goods", desc: "High-durability NFC" },
-    { name: "Beauty & Home", href: "/services/beauty-home-care", desc: "Chemical resistant" },
-    { name: "General Products", href: "/services/general-products", desc: "Retail & volume" },
-    { name: "Food & Beverage", href: "/services/food-beverage", desc: "FDA approved" },
-    { name: "Pharmaceutical", href: "/services/pharmaceutical-labels", desc: "Healthcare grade" },
+    { name: "Thermal Transfer", href: "/services/thermal-transfer", desc: "Barcodes & Ribbon solutions" },
+    { name: "Specialty Labels", href: "/services/specialty-labels", desc: "Reverse & Dome solutions" },
+    { name: "Automotive & Durable", href: "/services/automotive-industrial", desc: "Tyre & Asset tracking" },
+    { name: "Beauty & Home Care", href: "/services/beauty-home-care", desc: "Cosmetic & Wet wipes" },
+    { name: "Food & Beverage", href: "/services/food-beverage-liquor", desc: "Freezer & Juice labels" },
+    { name: "Pharmaceutical", href: "/services/pharmaceutical-solutions", desc: "Double-sided & Autoclave" },
+    { name: "Tamper Evident", href: "/services/tamper-evident", desc: "Silver Void & UDV seals" },
+    { name: "Printers & Hardware", href: "/services/barcode-printers", desc: "Industrial Label Printers" },
   ];
 
   const navLinks = [
@@ -133,9 +134,11 @@ export default function Header() {
             <Image 
               src="/tridev-logo.png" 
               alt="Tridev Labels Logo" 
-              width={180}
-              height={48}
+              width={240}
+              height={64}
               priority
+              fetchPriority="high"
+              sizes="(max-width: 768px) 150px, 240px"
               className={`h-7 sm:h-8 md:h-9 lg:h-10 xl:h-12 w-auto object-contain transition-all duration-500 ${(isScrolled || isMobileMenuOpen) ? 'brightness-100' : ''}`}
             />
           </Link>

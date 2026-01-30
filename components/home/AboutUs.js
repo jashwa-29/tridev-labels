@@ -1,5 +1,5 @@
 "use client";
-
+import Image from 'next/image';
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -68,36 +68,45 @@ export default function AboutSection() {
             
             {/* Main Image - Center Background */}
             <div className="absolute top-[10%] left-[10%] w-[70%] h-[70%] rounded-2xl overflow-hidden shadow-2xl z-10 parallax-img">
-              <img 
+              <Image 
                 src="https://i.pinimg.com/1200x/ea/9e/20/ea9e205b68c315a7a39cd685d1800d1d.jpg" 
                 alt="Industrial Printing Press"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
 
             {/* Image 2 - Top Right Overlay */}
             <div className="absolute top-0 right-0 w-[45%] h-[40%] rounded-2xl overflow-hidden shadow-2xl z-20 parallax-img border-4 sm:border-8 border-[#fafafa]">
-              <img 
+              <Image 
                 src="https://i.pinimg.com/1200x/14/d6/f3/14d6f3022120dcf6712edaa245e67653.jpg" 
                 alt="Digital Label Concept"
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
 
             {/* Image 3 - Bottom Left Overlay */}
             <div className="absolute bottom-[5%] left-0 w-[42%] h-[38%] rounded-2xl overflow-hidden shadow-2xl z-30 parallax-img border-4 sm:border-8 border-[#fafafa]">
-              <img 
+              <Image 
                 src="https://i.pinimg.com/1200x/04/28/b9/0428b900d699a1410449ae05ccb12aa4.jpg" 
                 alt="Quality Labels"
+                fill
+                sizes="(max-width: 768px) 50vw, 20vw"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
 
             {/* Image 4 - Floating Detail */}
             <div className="absolute bottom-0 right-[15%] w-[35%] h-[30%] rounded-2xl overflow-hidden shadow-2xl z-40 parallax-img border-4 sm:border-8 border-[#fafafa] hidden sm:block">
-              <img 
+              <Image 
                 src="https://i.pinimg.com/736x/64/cb/80/64cb8086e52ef8f1096f3d14e6e4194c.jpg" 
                 alt="Detailed Texture"
+                fill
+                sizes="(max-width: 768px) 30vw, 15vw"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>

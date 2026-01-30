@@ -43,16 +43,20 @@ export default function AboutMetrics() {
         }
       });
 
-      // Character count animation
+      // Character count animation - Optimized to reduce layout thrashing
       gsap.utils.toArray(".count-num").forEach((num) => {
         const val = parseInt(num.getAttribute("data-value"));
-        gsap.to(num, {
-          innerText: val,
+        const obj = { value: 0 };
+        gsap.to(obj, {
+          value: val,
           duration: 2.5,
-          snap: { innerText: 1 },
+          ease: "power2.out",
           scrollTrigger: {
             trigger: num,
             start: "top 90%"
+          },
+          onUpdate: () => {
+            num.textContent = Math.floor(obj.value);
           }
         });
       });

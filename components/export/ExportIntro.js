@@ -21,11 +21,13 @@ export default function ExportIntro() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 85%",
-            once: true
-          }
+            start: "top 90%",
+            toggleActions: "play none none none"
+          },
+          clearProps: "all"
         }
       );
+      ScrollTrigger.refresh();
     }, sectionRef);
     return () => ctx.revert();
   }, []);

@@ -42,11 +42,13 @@ export default function SpecialtyCapabilities() {
           ease: "expo.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            once: true
-          }
+            start: "top 90%",
+            toggleActions: "play none none none"
+          },
+          clearProps: "all"
         }
       );
+      ScrollTrigger.refresh();
     }, sectionRef);
     return () => ctx.revert();
   }, []);

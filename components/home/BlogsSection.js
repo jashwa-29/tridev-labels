@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Calendar, User, Send } from 'lucide-react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { blogService } from '@/services/blog.service';
@@ -104,12 +105,14 @@ export default function BlogsSection() {
           <Link href={`/blog/${featuredBlog.slug}`} className="blog-card lg:col-span-7 group cursor-pointer lg:sticky lg:top-32 block">
             <div className="relative h-full flex flex-col">
               <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-gray-100 shadow-xl shadow-black/5">
-                <img 
+                <Image 
                   src={featuredBlog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"} 
                   alt={featuredBlog.title}
-                  className="w-full h-full object-cover  brightness-90 group-hover:-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-1000"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="w-full h-full object-cover brightness-90 group-hover:brightness-100 group-hover:scale-105 transition-all duration-1000"
                 />
-                <div className="absolute top-6 left-6 px-4 py-1.5 bg-[#E32219] text-white text-[10px] font-bold uppercase tracking-widest rounded-sm">
+                <div className="absolute top-6 left-6 px-4 py-1.5 bg-[#E32219] text-white text-[10px] font-bold uppercase tracking-widest rounded-sm z-10">
                   {featuredBlog.category || 'Article'}
                 </div>
               </div>
@@ -143,11 +146,13 @@ export default function BlogsSection() {
               {secondaryBlogs.map((blog) => (
                 <Link href={`/blog/${blog.slug}`} key={blog._id} className="blog-card group cursor-pointer border-b border-gray-100 pb-10 last:border-0 last:pb-0 block">
                   <div className="flex flex-col md:flex-row gap-6">
-                     <div className="w-full md:w-44 aspect-square shrink-0 overflow-hidden rounded-xl bg-gray-100 shadow-sm">
-                        <img 
+                     <div className="w-full md:w-44 aspect-square shrink-0 overflow-hidden rounded-xl bg-gray-100 shadow-sm relative">
+                        <Image 
                           src={blog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"} 
                           alt={blog.title}
-                          className="w-full h-full object-cover  brightness-95 group-hover:-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 180px"
+                          className="w-full h-full object-cover brightness-95 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
                         />
                      </div>
                      

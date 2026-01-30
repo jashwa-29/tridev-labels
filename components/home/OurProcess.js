@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Printer, PackageCheck, ClipboardCheck } from 'lucide-react';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -184,9 +185,11 @@ export default function OurProcessSection() {
             
             {/* Image Area */}
             <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden">
-              <img 
+              <Image 
                 src={step.image} 
                 alt={step.title}
+                fill
+                sizes="85vw"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div>
@@ -252,9 +255,11 @@ export default function OurProcessSection() {
                   <div className="relative group w-full max-w-md aspect-square">
                     <div className="absolute inset-0 bg-[#E32219]/5 rounded-3xl scale-110 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                     <div className="relative w-full h-full bg-white border border-gray-100 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.08)] rounded-3xl overflow-hidden transform transition-all duration-700 group-hover:-translate-y-6">
-                      <img 
+                      <Image 
                         src={step.image} 
                         alt={step.title}
+                        fill
+                        sizes="(max-width: 1024px) 50vw, 450px"
                         className="w-full h-full object-cover grayscale-20 group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                       />
                       <div className="absolute top-8 right-8 flex gap-1 z-20">

@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,18 +56,19 @@ export default function WhyChooseSection() {
   return (
     <section 
       ref={containerRef} 
-      className="relative py-20 md:py-24  mb-16 md:mb-24 lg:mb-32 xl:mb-40 overflow-hidden"
-      style={{
-        backgroundImage: 'url("https://peppy-moonbeam-9fe49c.netlify.app/images/background-img-1.jpeg")',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="relative py-20 md:py-24 mb-16 md:mb-24 lg:mb-32 xl:mb-40 overflow-hidden"
     >
-      
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 z-0 bg-black/70"></div>
+      {/* Optimized Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://peppy-moonbeam-9fe49c.netlify.app/images/background-img-1.jpeg"
+          alt="Why Choose Us Background"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/70"></div>
+      </div>
 
       <div ref={contentRef} className="container mx-auto px-4 md:px-8 relative z-10">
         

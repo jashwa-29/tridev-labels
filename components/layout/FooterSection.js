@@ -76,8 +76,9 @@ export default function FooterSection() {
               <Image 
                 src="/tridev-logo.png" 
                 alt="Trridev Logo" 
-                width={180}
-                height={48}
+                width={240}
+                height={64}
+                sizes="240px"
                 className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
               />
             </Link>

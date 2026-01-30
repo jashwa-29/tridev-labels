@@ -3,6 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Sparkles, Layers, Cpu, Recycle } from 'lucide-react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -107,9 +108,11 @@ export default function FinishesGallery() {
           {finishes.map((finish) => (
             <div key={finish.id} className="finish-card group cursor-pointer">
               <div className="relative aspect-4/5 rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 mb-6">
-                <img 
+                <Image 
                   src={finish.image} 
                   alt={finish.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-1000"
                 />
                 

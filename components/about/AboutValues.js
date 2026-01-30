@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Shield, Zap, Target, Award, Plus } from 'lucide-react';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,14 +62,15 @@ export default function AboutValues() {
       
       {/* Background with Image + Parallax + Dark Overlay */}
       <div className="absolute inset-0 z-0">
-        <div 
-          ref={bgRef}
-          className="absolute -top-[20%] left-0 w-full h-[140%] bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url('https://peppy-moonbeam-9fe49c.netlify.app/images/background-img-1.jpeg')`,
-            opacity: 0.3
-          }}
-        ></div>
+        <div ref={bgRef} className="absolute -top-[20%] left-0 w-full h-[140%]">
+          <Image
+            src="https://peppy-moonbeam-9fe49c.netlify.app/images/background-img-1.jpeg"
+            alt="Institutional Background"
+            fill
+            className="object-cover opacity-30"
+            sizes="100vw"
+          />
+        </div>
         {/* Semi-transparent dark overlay to ensure text visibility */}
         <div className="absolute inset-0 bg-[#0a0a0a]/50 z-10"></div>
       </div>

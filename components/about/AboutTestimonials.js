@@ -91,7 +91,13 @@ export default function AboutTestimonials() {
                <div className="flex -space-x-4">
                   {[1,2,3,4].map(i => (
                     <div key={i} className="w-12 h-12 rounded-full border-2 border-white bg-gray-200 flex items-center justify-center overflow-hidden">
-                       <img src={`https://i.pravatar.cc/150?u=${i+10}`} alt="User" />
+                       <img 
+                        src={`https://i.pravatar.cc/150?u=${i+10}`} 
+                        alt="User" 
+                        width={48} 
+                        height={48} 
+                        loading="lazy"
+                       />
                     </div>
                   ))}
                   <div className="w-12 h-12 rounded-full border-2 border-white bg-[#E32219] flex items-center justify-center text-[10px] font-bold text-white">

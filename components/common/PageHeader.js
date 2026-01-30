@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function PageHeader({ 
   title, 
@@ -19,13 +20,17 @@ export default function PageHeader({
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Content animation
-      gsap.from(contentRef.current.children, {
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out"
-      });
+      gsap.fromTo(contentRef.current.children, 
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          clearProps: "all"
+        }
+      );
 
       // Parallax Background
       gsap.to(bgRef.current, {
@@ -48,13 +53,18 @@ export default function PageHeader({
       
       {/* Background with Image + Parallax + Dark Overlay */}
       <div className="absolute inset-0 z-0">
-        <div 
-          ref={bgRef}
-          className="absolute -top-[20%] left-0 w-full h-[140%] bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url('https://peppy-moonbeam-9fe49c.netlify.app/images/background-img-1.jpeg')`,
-          }}
-        ></div>
+        <div ref={bgRef} className="absolute -top-[20%] left-0 w-full h-[140%]">
+          <Image
+            src="https://peppy-moonbeam-9fe49c.netlify.app/images/background-img-1.jpeg"
+            alt="Page Header Background"
+            fill
+            priority
+            fetchPriority="high"
+            decoding="async"
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         
         {/* Dimming Overlay (Replaces opacity on elements) */}
         <div className="absolute inset-0 bg-black/40 z-10"></div>

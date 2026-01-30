@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, ShieldCheck, Cog, Ruler } from 'lucide-react';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +23,7 @@ export default function AboutApproach() {
             trigger: containerRef.current,
             start: "top bottom",
             end: "bottom top",
-            scrub: 1
+            scrub: true
           }
         });
         
@@ -33,7 +34,7 @@ export default function AboutApproach() {
             trigger: containerRef.current,
             start: "top bottom",
             end: "bottom top",
-            scrub: 1
+            scrub: true
           }
         });
 
@@ -44,7 +45,7 @@ export default function AboutApproach() {
             trigger: containerRef.current,
             start: "top bottom",
             end: "bottom top",
-            scrub: 1
+            scrub: true
           }
         });
       }
@@ -95,7 +96,13 @@ export default function AboutApproach() {
               {/* Step 01 - Mobile */}
               <div className="approach-card space-y-4">
                  <div className="aspect-4/5 rounded-3xl overflow-hidden shadow-xl relative">
-                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=1000" alt="Color Calibration" className="w-full h-full object-cover" />
+                    <Image 
+                       src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=1000" 
+                       alt="Color Calibration" 
+                       fill
+                       sizes="(max-width: 768px) 100vw, 33vw"
+                       className="w-full h-full object-cover" 
+                    />
                     <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-6 left-6 text-white">
                        <span className="text-[8px] font-bold uppercase tracking-widest text-[#E32219]">Step 01</span>
@@ -110,7 +117,13 @@ export default function AboutApproach() {
               {/* Step 02 - Mobile */}
               <div className="approach-card space-y-4">
                  <div className="aspect-4/5 rounded-3xl overflow-hidden shadow-xl relative">
-                    <img src="/label-printing-approach.png" alt="Industrial Execution" className="w-full h-full object-cover" />
+                    <Image 
+                       src="/label-printing-approach.png" 
+                       alt="Industrial Execution" 
+                       fill
+                       sizes="(max-width: 768px) 100vw, 33vw"
+                       className="w-full h-full object-cover" 
+                    />
                     <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-6 left-6 text-white">
                        <span className="text-[8px] font-bold uppercase tracking-widest text-[#E32219]">Step 02</span>
@@ -125,7 +138,13 @@ export default function AboutApproach() {
               {/* Step 03 - Mobile */}
               <div className="approach-card space-y-4">
                  <div className="aspect-4/5 rounded-3xl overflow-hidden shadow-xl relative">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" alt="Quality Assurance" className="w-full h-full object-cover" />
+                    <Image 
+                       src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" 
+                       alt="Quality Assurance" 
+                       fill
+                       sizes="(max-width: 768px) 100vw, 33vw"
+                       className="w-full h-full object-cover" 
+                    />
                     <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-6 left-6 text-white">
                        <span className="text-[8px] font-bold uppercase tracking-widest text-[#E32219]">Step 03</span>
@@ -175,9 +194,12 @@ export default function AboutApproach() {
              </div>
 
              <div className="approach-card aspect-4/5 rounded-[32px] overflow-hidden shadow-2xl relative group">
-                <img 
+                <Image 
                    src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=1000" 
                    alt="Color Calibration" 
+                   fill
+                   priority
+                   sizes="(max-width: 768px) 100vw, 33vw"
                    className="w-full h-full object-cover grayscale brightness-90 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
@@ -194,9 +216,11 @@ export default function AboutApproach() {
           {/* Column 2: Medium */}
           <div className="col-medium space-y-8 pt-24">
              <div className="approach-card aspect-square rounded-[32px] overflow-hidden shadow-2xl relative group">
-                <img 
+                <Image 
                    src="/label-printing-approach.png" 
                    alt="Industrial Machine" 
+                   fill
+                   sizes="(max-width: 768px) 100vw, 33vw"
                    className="w-full h-full object-cover grayscale brightness-90 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
@@ -232,9 +256,11 @@ export default function AboutApproach() {
              </div>
 
              <div className="approach-card aspect-5/4 rounded-[32px] overflow-hidden shadow-2xl relative group">
-                <img 
+                <Image 
                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" 
                    alt="Quality Check" 
+                   fill
+                   sizes="(max-width: 768px) 100vw, 33vw"
                    className="w-full h-full object-cover grayscale brightness-90 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>

@@ -4,14 +4,40 @@ import { useEffect, useState, useRef } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { usePathname } from 'next/navigation';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
   const buttonRef = useRef(null);
   const circleRef = useRef(null);
   const arrowRef = useRef(null);
+
+  // Robust Automatic Scroll to Top on Route Change
+  useEffect(() => {
+    // 1. Immediate scroll reset
+    window.scrollTo(0, 0);
+    
+    // 2. Clear GSAP ScrollTrigger states to prevent ghost pins
+    if (typeof window !== 'undefined') {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.refresh();
+    }
+
+    // 3. Delayed safety scroll (handles Next.js hydration jumps)
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+      ScrollTrigger.refresh();
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   // Toggle visibility based on scroll
   useEffect(() => {

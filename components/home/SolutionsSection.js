@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
@@ -11,131 +12,90 @@ const solutions = [
   {
     id: 1,
     title: "Thermal Transfer Labels",
-    shortTitle: "Premium",
-    description: "High-end labels with metallic foils, embossing, and specialty materials for luxury brands that demand attention on the shelf.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
+    shortTitle: "Thermal",
+    href: "/services/thermal-transfer",
+    description: "High-precision barcode and E-commerce labels with premium ribbon transfer technology for industrial clarity.",
+    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
     accentColor: "#E32219",
     image: "https://i.pinimg.com/1200x/28/69/48/286948c062ac9bd2c97422fef9fa527c.jpg"
   },
   {
     id: 2,
-    title: "Sustainable Eco-Labels",
-    shortTitle: "Eco-Friendly",
-    description: "Environmentally friendly labels using recycled materials and biodegradable inks. Perfect for green brands committed to sustainability.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-      </svg>
-    ),
-    accentColor: "#10B981",
+    title: "Specialty Labels",
+    shortTitle: "Specialty",
+    href: "/services/specialty-labels",
+    description: "Reverse printed, domed, and water-detection solutions for unique engineering and branding challenges.",
+    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>,
+    accentColor: "#F59E0B",
     image: "https://i.pinimg.com/1200x/3f/5e/3f/3f5e3ff335ab1254d9e39dd3368d8fec.jpg"
   },
   {
     id: 3,
-    title: "Automotive & Durable Goods",
-    shortTitle: "Smart",
-    description: "NFC, QR code, and AR-enabled labels for enhanced customer engagement. Bridge the physical and digital worlds seamlessly.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
+    title: "Automotive & Industrial",
+    shortTitle: "Durable",
+    href: "/services/automotive-industrial",
+    description: "BS5609 certified drum labels, tyre labels, and high-temperature solutions for extreme industrial environments.",
+    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>,
     accentColor: "#3B82F6",
     image: "https://i.pinimg.com/1200x/df/8a/f8/df8af8112ce715813ecedd5cb17baa33.jpg"
   },
   {
     id: 4,
     title: "Beauty & Home Care",
-    shortTitle: "Industrial",
-    description: "Labels engineered to withstand extreme conditions, chemicals, and harsh environments. Built to last where others fail.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-      </svg>
-    ),
-    accentColor: "#6B7280",
+    shortTitle: "Cosmetic",
+    href: "/services/beauty-home-care",
+    description: "Premium cosmetic and wet-wipe labeling with luxury foils and moisture-resistant soft-touch finishes.",
+    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>,
+    accentColor: "#8B5CF6",
     image: "https://i.pinimg.com/1200x/ff/88/8b/ff888b16d05f34d7596b39805b16c6f7.jpg"
   },
   {
     id: 5,
-    title: "General Products Labels",
-    shortTitle: "Pharma",
-    description: "FDA-compliant labels for the healthcare industry. Ensuring safety, traceability, and clarity for every product.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-      </svg>
-    ),
-    accentColor: "#8B5CF6",
+    title: "Food, Beverage & Liquor",
+    shortTitle: "Gourmet",
+    href: "/services/food-beverage-liquor",
+    description: "FDA-compliant freezer-proof and juice bottle labels designed for shelf impact and environmental resilience.",
+    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>,
+    accentColor: "#10B981",
     image: "https://i.pinimg.com/1200x/d3/ae/66/d3ae6675764a3449bab489f244dc18f9.jpg"
   },
   {
     id: 6,
-    title: "Food & Beverage Labels",
-    shortTitle: "Beverage",
-    description: "Specialized labels for bottles, cans, and cartons. Water-resistant and vibrant designs that pop in the cooler.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-      </svg>
-    ),
-    accentColor: "#F59E0B",
+    title: "Pharmaceutical Solutions",
+    shortTitle: "Healthcare",
+    href: "/services/pharmaceutical-solutions",
+    description: "Zero-defect healthcare labeling including autoclave-resistant and double-sided printed medicine instructions.",
+    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>,
+    accentColor: "#6366F1",
     image: "https://i.pinimg.com/1200x/2b/0b/52/2b0b52d5d0e4f15078c5835290e50f6d.jpg"
   },
   {
     id: 7,
-    title: "Pharmaceutical Labels",
-    shortTitle: "Beverage",
-    description: "Specialized labels for bottles, cans, and cartons. Water-resistant and vibrant designs that pop in the cooler.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-      </svg>
-    ),
-    accentColor: "#F59E0B",
+    title: "Tamper-Evident Labels",
+    shortTitle: "Security",
+    href: "/services/tamper-evident",
+    description: "Silver VOID, UDV, and smartphone camera security labels for uncompromising brand and asset protection.",
+    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
+    accentColor: "#E32219",
     image: "https://i.pinimg.com/1200x/2b/0b/52/2b0b52d5d0e4f15078c5835290e50f6d.jpg"
   },
   {
     id: 8,
-    title: "Tamper-evident Labels",
-    shortTitle: "Beverage",
-    description: "Specialized labels for bottles, cans, and cartons. Water-resistant and vibrant designs that pop in the cooler.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-      </svg>
-    ),
-    accentColor: "#F59E0B",
-    image: "https://i.pinimg.com/1200x/2b/0b/52/2b0b52d5d0e4f15078c5835290e50f6d.jpg"
-  },
-  {
-    id: 9,
     title: "Barcode Label Printers",
-    shortTitle: "Beverage",
-    description: "Specialized labels for bottles, cans, and cartons. Water-resistant and vibrant designs that pop in the cooler.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-      </svg>
-    ),
-    accentColor: "#F59E0B",
+    shortTitle: "Hardware",
+    href: "/services/barcode-printers",
+    description: "Industrial-grade desktop and mobile printers from world-class brands for seamless label deployment.",
+    icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>,
+    accentColor: "#4B5563",
     image: "https://i.pinimg.com/1200x/2b/0b/52/2b0b52d5d0e4f15078c5835290e50f6d.jpg"
   },
 ];
 
 function ReyndersCard({ service, isActive, isAnyActive, onHover }) {
-  const flexClass = !isAnyActive 
-    ? 'flex-1' 
-    : isActive 
-      ? 'flex-[2.5] lg:flex-[3]' 
-      : 'flex-1';
 
   return (
-    <div 
+    <Link 
+      href={service.href || "#"}
       onMouseEnter={onHover}
       className={`relative h-[300px] md:h-[450px] rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group ${isActive ? 'md:flex-[2.5] lg:flex-3' : 'md:flex-1'} ${
         isActive 
@@ -184,12 +144,12 @@ function ReyndersCard({ service, isActive, isAnyActive, onHover }) {
                      {service.description}
                   </p>
                   
-                  <button className={`inline-flex items-center gap-2 text-[10px] md:text-xs font-extrabold uppercase tracking-widest border-b-2 pb-1 transition-colors ${
+                  <div className={`inline-flex items-center gap-2 text-[10px] md:text-xs font-extrabold uppercase tracking-widest border-b-2 pb-1 transition-colors ${
                     isActive ? 'text-white border-white hover:text-white/80 hover:border-white/80' : 'text-gray-900 border-gray-900 hover:text-[#E32219] hover:border-[#E32219]'
                   }`}>
                      Explore Solution
                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                  </button>
+                  </div>
                </div>
             </div>
          </div>
@@ -200,7 +160,7 @@ function ReyndersCard({ service, isActive, isAnyActive, onHover }) {
             </div>
          </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -213,16 +173,21 @@ export default function SolutionsSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-       gsap.from(containerRef.current, {
-          y: 50, 
-          opacity: 0, 
-          duration: 1, 
-          ease: "power3.out",
-          scrollTrigger: {
-             trigger: containerRef.current,
-             start: "top 80%"
+       gsap.fromTo(containerRef.current, 
+          { y: 50, opacity: 0 },
+          {
+            y: 0, 
+            opacity: 1, 
+            duration: 1, 
+            ease: "power3.out",
+            scrollTrigger: {
+               trigger: containerRef.current,
+               start: "top 95%",
+               toggleActions: "play none none none"
+            },
+            clearProps: "all"
           }
-       });
+       );
        
        if(headerRef.current) {
          gsap.from(headerRef.current.children, {
@@ -243,7 +208,7 @@ export default function SolutionsSection() {
 
   const row1 = solutions.slice(0, 3);
   const row2 = solutions.slice(3, 6);
-  const row3 = solutions.slice(6, 9);
+  const row3 = solutions.slice(6, 8);
 
   return (
     <section id="services" className="relative bg-white overflow-hidden pb-16 md:pb-24 lg:pb-32 xl:pb-40">
