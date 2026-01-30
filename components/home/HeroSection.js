@@ -35,7 +35,7 @@ export default function HeroSection() {
     // Safety timeout to ensure video shows eventually
     const timer = setTimeout(() => {
       setIsVideoLoaded(true);
-    }, 2500);
+    }, 1000); // Reduced from 2500ms
 
     return () => clearTimeout(timer);
   }, []);
@@ -94,15 +94,22 @@ export default function HeroSection() {
       {/* Background Layer */}
       {/* Background Video Layer */}
       <div ref={bgRef} className="absolute inset-0 z-0 h-[120%] -top-[10%] w-full">
-        {/* Fallback Image - Always visible behind video */}
- 
+        {/* Optimized Poster Image */}
+        <Image
+          src="/hero-bg-bright.png"
+          alt="Tridev Labels Background"
+          fill
+          priority
+          className={`object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+        />
+
         <video 
           ref={videoRef}
           autoPlay 
           loop 
           muted 
           playsInline
-          poster="/hero-bg-bright.png"
+          preload="auto"
           onLoadedData={() => setIsVideoLoaded(true)}
           className={`absolute inset-0 w-full h-full object-cover contrast-[1.1] saturate-[0.8] z-0 pointer-events-none transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
         >

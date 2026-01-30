@@ -13,6 +13,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'peppy-moonbeam-9fe49c.netlify.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
       }
     ],
   },

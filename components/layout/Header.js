@@ -1,5 +1,6 @@
 "use client";
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
@@ -129,9 +130,12 @@ export default function Header() {
           
           {/* Logo */}
           <Link href="/" className="relative z-50 flex items-center group">
-            <img 
+            <Image 
               src="/tridev-logo.png" 
               alt="Tridev Labels Logo" 
+              width={180}
+              height={48}
+              priority
               className={`h-7 sm:h-8 md:h-9 lg:h-10 xl:h-12 w-auto object-contain transition-all duration-500 ${(isScrolled || isMobileMenuOpen) ? 'brightness-100' : ''}`}
             />
           </Link>

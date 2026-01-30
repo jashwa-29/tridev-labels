@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -147,10 +148,12 @@ function ReyndersCard({ service, isActive, isAnyActive, onHover }) {
       <div className={`absolute inset-0 transition-all duration-1000 ease-out transform origin-center ${
          isActive ? 'scale-105 opacity-100' : 'scale-100 opacity-90'
       }`}>
-         <img 
+         <Image 
            src={service.image} 
            alt={service.title}
-           className="w-full h-full object-cover transition-opacity duration-500"
+           fill
+           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+           className="object-cover transition-opacity duration-500"
          />
       </div>
 

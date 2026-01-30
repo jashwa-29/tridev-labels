@@ -27,9 +27,9 @@ export default function Preloader({ onComplete }) {
       // Animate counter from 0 to 100
       tl.to(counterRef.current, {
         innerText: 100,
-        duration: 2.5,
+        duration: 1.2, // Reduced from 2.5s for better Speed Index
         snap: { innerText: 1 },
-        ease: "power3.inOut",
+        ease: "power2.inOut",
         onUpdate: function() {
           if (counterRef.current) {
             counterRef.current.innerHTML = Math.round(this.targets()[0].innerText) + "%";
@@ -39,9 +39,9 @@ export default function Preloader({ onComplete }) {
 
       // Logo Reveal
       tl.from(logoRef.current, {
-        scale: 0.8,
+        scale: 0.9,
         opacity: 0,
-        duration: 1.5,
+        duration: 0.8,
         ease: "power3.out"
       }, "<");
 
