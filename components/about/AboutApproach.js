@@ -80,31 +80,76 @@ export default function AboutApproach() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10">
         
         {/* Mobile Layout (Stacked) */}
-        <div className="lg:hidden flex flex-col gap-8">
-           <div className="approach-card space-y-6 mb-8">
+        <div className="lg:hidden flex flex-col gap-12">
+           <div className="approach-card space-y-6">
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#E32219]">Our Methodology</span>
               <h2 className="text-4xl font-light text-gray-900 leading-tight">
                 Engineering <br/> <span className="font-medium">Perfection.</span>
               </h2>
               <p className="text-gray-500 font-light leading-relaxed">
-                By combining artisan craftsmanship with industrial automation, we deliver labels that define brands.
+                We combine artisan craftsmanship with industrial automation to deliver labels that define global brands.
               </p>
            </div>
            
-           <div className="approach-card aspect-4/5 rounded-3xl overflow-hidden shadow-xl">
-             <img src="/label-printing-approach.png" alt="Machine" className="w-full h-full object-cover" />
+           <div className="space-y-8">
+              {/* Step 01 - Mobile */}
+              <div className="approach-card space-y-4">
+                 <div className="aspect-4/5 rounded-3xl overflow-hidden shadow-xl relative">
+                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=1000" alt="Color Calibration" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 text-white">
+                       <span className="text-[8px] font-bold uppercase tracking-widest text-[#E32219]">Step 01</span>
+                       <h3 className="text-xl font-medium">Precision Calibration</h3>
+                    </div>
+                 </div>
+                 <p className="text-gray-500 text-sm font-light leading-relaxed px-2">
+                    Advanced spectrophotometers ensure absolute color fidelity and brand consistency across every substrate we print on.
+                 </p>
+              </div>
+
+              {/* Step 02 - Mobile */}
+              <div className="approach-card space-y-4">
+                 <div className="aspect-4/5 rounded-3xl overflow-hidden shadow-xl relative">
+                    <img src="/label-printing-approach.png" alt="Industrial Execution" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 text-white">
+                       <span className="text-[8px] font-bold uppercase tracking-widest text-[#E32219]">Step 02</span>
+                       <h3 className="text-xl font-medium">High-Speed Execution</h3>
+                    </div>
+                 </div>
+                 <p className="text-gray-500 text-sm font-light leading-relaxed px-2">
+                    State-of-the-art rotary and digital presses allow for high-volume output while maintaining micro-level detail and precision.
+                 </p>
+              </div>
+
+              {/* Step 03 - Mobile */}
+              <div className="approach-card space-y-4">
+                 <div className="aspect-4/5 rounded-3xl overflow-hidden shadow-xl relative">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" alt="Quality Assurance" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 text-white">
+                       <span className="text-[8px] font-bold uppercase tracking-widest text-[#E32219]">Step 03</span>
+                       <h3 className="text-xl font-medium">Quality Assurance</h3>
+                    </div>
+                 </div>
+                 <p className="text-gray-500 text-sm font-light leading-relaxed px-2">
+                    A zero-defect protocol ensures every label undergoes rigorous multi-stage checks for durability and scannability.
+                 </p>
+              </div>
            </div>
 
-           <div className="approach-card bg-[#050505] p-8 rounded-3xl text-white">
-              <Cog className="w-8 h-8 text-[#E32219] mb-4" />
-              <h3 className="text-xl font-bold mb-2">Technical Analysis</h3>
-              <p className="text-gray-400 font-light text-sm">Every project begins with a deep-dive substrate analysis.</p>
-           </div>
+           <div className="grid grid-cols-1 gap-6">
+              <div className="approach-card bg-[#050505] p-8 rounded-3xl text-white">
+                 <Cog className="w-8 h-8 text-[#E32219] mb-4" />
+                 <h3 className="text-xl font-bold mb-2">Technical Analysis</h3>
+                 <p className="text-gray-400 font-light text-sm">Every project begins with a deep-dive substrate analysis to ensure performance in any environment.</p>
+              </div>
 
-           <div className="approach-card bg-gray-50 p-8 rounded-3xl border border-gray-100">
-              <ShieldCheck className="w-8 h-8 text-gray-900 mb-4" />
-              <h3 className="text-xl font-bold mb-2">ISO Certified</h3>
-              <p className="text-gray-500 font-light text-sm">Zero-defect protocols since 2008.</p>
+              <div className="approach-card bg-gray-50 p-8 rounded-3xl border border-gray-100">
+                 <ShieldCheck className="w-8 h-8 text-gray-900 mb-4" />
+                 <h3 className="text-xl font-bold mb-2">ISO Certified</h3>
+                 <p className="text-gray-500 font-light text-sm">Adhering to international quality standards for manufacturing excellence since 2008.</p>
+              </div>
            </div>
         </div>
 
@@ -124,7 +169,7 @@ export default function AboutApproach() {
                       Beyond <br/> <span className="text-[#E32219] font-medium">Standard.</span>
                    </h2>
                    <p className="text-gray-500 text-lg font-light leading-relaxed">
-                      We don't just print labels. We engineer brand assets that withstand the rigorous demands of the global supply chain.
+                      At Tridev Labels, we don't just print; we engineer brand assets designed to withstand the rigorous demands of the global supply chain, ensuring your identity remains pristine from factory to consumer.
                    </p>
                 </div>
              </div>
@@ -135,10 +180,13 @@ export default function AboutApproach() {
                    alt="Color Calibration" 
                    className="w-full h-full object-cover grayscale brightness-90 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                <div className="absolute bottom-8 left-8 text-white">
-                   <div className="text-xs font-bold uppercase tracking-widest mb-2 text-[#E32219]">Step 01</div>
-                   <h3 className="text-2xl font-light">Precision Calibration</h3>
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                <div className="absolute bottom-10 left-10 right-10 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                   <div className="text-xs font-bold uppercase tracking-widest mb-3 text-[#E32219]">Step 01</div>
+                   <h3 className="text-2xl font-medium mb-3">Precision Calibration</h3>
+                   <p className="text-gray-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity delay-100 duration-500">
+                      We utilize advanced spectrophotometers to ensure absolute color fidelity. Every brand asset is calibrated to meet global standards, ensuring consistency across all substrates.
+                   </p>
                 </div>
              </div>
           </div>
@@ -151,10 +199,13 @@ export default function AboutApproach() {
                    alt="Industrial Machine" 
                    className="w-full h-full object-cover grayscale brightness-90 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                <div className="absolute bottom-8 left-8 text-white">
-                   <div className="text-xs font-bold uppercase tracking-widest mb-2 text-[#E32219]">Step 02</div>
-                   <h3 className="text-2xl font-light">High-Speed Execution</h3>
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                <div className="absolute bottom-10 left-10 right-10 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                   <div className="text-xs font-bold uppercase tracking-widest mb-3 text-[#E32219]">Step 02</div>
+                   <h3 className="text-2xl font-medium mb-3">High-Speed Execution</h3>
+                   <p className="text-gray-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity delay-100 duration-500">
+                      Our facility houses state-of-the-art rotary and digital presses capable of high-volume output without compromising on detail. We engineer efficiency into every print run.
+                   </p>
                 </div>
              </div>
 
@@ -162,10 +213,10 @@ export default function AboutApproach() {
                 <Cog className="w-12 h-12 text-[#E32219] mb-6 animate-spin-slow opacity-20 group-hover:opacity-100 transition-opacity" />
                 <h3 className="text-3xl font-light mb-4">Architectural <br/> Integrity.</h3>
                 <p className="text-gray-400 font-light leading-relaxed mb-8">
-                   Our substrates are tested for chemical resistance, humidity tolerance, and extreme temperature variations.
+                   Every label substrate we source undergoes exhaustive laboratory testing for chemical resistance, humidity tolerance, and extreme temperature variations to guarantee performance in any industrial environment.
                 </p>
                 <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#E32219]">
-                   Learn Protocols <ArrowUpRight className="w-4 h-4" />
+                   Technical Specs <ArrowUpRight className="w-4 h-4" />
                 </div>
              </div>
           </div>
@@ -176,7 +227,7 @@ export default function AboutApproach() {
                 <Ruler className="w-10 h-10 text-gray-300 mb-6 group-hover:text-[#E32219] transition-colors" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Micro-Precision</h3>
                 <p className="text-gray-500 font-light text-sm leading-relaxed">
-                   Lasers calibrated to 0.01mm tolerance ensure every cut is crisp, clean, and consistent.
+                   Our laser-guided finishing systems are calibrated to a 0.01mm tolerance, ensuring that every contour is crisp, every corner is clean, and every batch mirrors the master design perfectly.
                 </p>
              </div>
 
@@ -186,10 +237,13 @@ export default function AboutApproach() {
                    alt="Quality Check" 
                    className="w-full h-full object-cover grayscale brightness-90 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                <div className="absolute bottom-8 left-8 text-white">
-                   <div className="text-xs font-bold uppercase tracking-widest mb-2 text-[#E32219]">Step 03</div>
-                   <h3 className="text-2xl font-light">Quality Assurance</h3>
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                <div className="absolute bottom-10 left-10 right-10 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                   <div className="text-xs font-bold uppercase tracking-widest mb-3 text-[#E32219]">Step 03</div>
+                   <h3 className="text-2xl font-medium mb-3">Quality Assurance</h3>
+                   <p className="text-gray-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity delay-100 duration-500">
+                      Zero-defect is our baseline. Every millimeter of our production is subjected to rigorous multi-stage inspections, from material durability to barcode scannability.
+                   </p>
                 </div>
              </div>
 
@@ -198,7 +252,9 @@ export default function AboutApproach() {
                    <span className="text-4xl font-bold text-[#E32219]">16+</span>
                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400 leading-tight">Years Of <br/> Excellence</span>
                 </div>
-                <p className="text-gray-500 font-light text-sm">Trusted by global institutions.</p>
+                <p className="text-gray-500 font-light text-sm leading-relaxed">
+                   Since our inception in 2008, we have evolved from a small letterpress unit into a 20,000 sq ft industrial powerhouse trusted by global pharmaceutical and beverage institutions.
+                </p>
              </div>
           </div>
 
