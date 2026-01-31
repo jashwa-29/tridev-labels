@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Phone, Mail, MapPin, Send, ArrowUpRight } from 'lucide-react';
+import { quoteService } from '@/services/quote.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,6 +67,38 @@ export default function ContactSection() {
     }, containerRef);
     return () => ctx.revert();
   }, []);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      await quoteService.submit({
+        ...formData,
+        company: formData.subject, // Using subject as company for now or just generic
+        source: 'contact'
+      });
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } catch (err) {
+      console.error('Contact submission failed:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const contactDetails = [
     {
@@ -163,13 +196,16 @@ export default function ContactSection() {
           {/* Right Column: Elegant Form */}
           <div ref={formRef} className="lg:col-span-7 h-full">
             <div className="bg-white p-8 md:p-12 lg:p-14 rounded-[32px] border border-gray-100 shadow-2xl shadow-gray-200/40 relative h-full flex flex-col justify-center">
-              <form className="space-y-10 relative z-10 w-full">
+              <form onSubmit={handleSubmit} className="space-y-10 relative z-10 w-full">
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="group relative">
                     <input 
                       type="text" 
                       id="name"
+                      required
+                      value={formData.name}
+                      onChange={e => setFormData({...formData, name: e.target.value})}
                       className="peer w-full bg-transparent border-b border-gray-200 py-4 text-gray-900 text-lg focus:border-[#E32219] focus:outline-none transition-colors duration-300 placeholder-transparent"
                       placeholder="Name"
                     />
@@ -185,6 +221,9 @@ export default function ContactSection() {
                     <input 
                       type="email" 
                       id="email"
+                      required
+                      value={formData.email}
+                      onChange={e => setFormData({...formData, email: e.target.value})}
                       className="peer w-full bg-transparent border-b border-gray-200 py-4 text-gray-900 text-lg focus:border-[#E32219] focus:outline-none transition-colors duration-300 placeholder-transparent"
                       placeholder="Email"
                     />
@@ -197,25 +236,50 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <div className="group relative">
-                  <input 
-                    type="text" 
-                    id="subject"
-                    className="peer w-full bg-transparent border-b border-gray-200 py-4 text-gray-900 text-lg focus:border-[#E32219] focus:outline-none transition-colors duration-300 placeholder-transparent"
-                    placeholder="Subject"
-                  />
-                  <label 
-                    htmlFor="subject"
-                    className="absolute left-0 -top-3.5 text-xs font-bold text-gray-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:tracking-normal peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#E32219] peer-focus:font-bold peer-focus:tracking-widest"
-                  >
-                    Subject
-                  </label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="group relative">
+                    <input 
+                      type="tel" 
+                      id="phone"
+                      required
+                      value={formData.phone}
+                      onChange={e => setFormData({...formData, phone: e.target.value})}
+                      className="peer w-full bg-transparent border-b border-gray-200 py-4 text-gray-900 text-lg focus:border-[#E32219] focus:outline-none transition-colors duration-300 placeholder-transparent"
+                      placeholder="Phone"
+                    />
+                    <label 
+                      htmlFor="phone"
+                      className="absolute left-0 -top-3.5 text-xs font-bold text-gray-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:tracking-normal peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#E32219] peer-focus:font-bold peer-focus:tracking-widest"
+                    >
+                      Phone Number
+                    </label>
+                  </div>
+
+                  <div className="group relative">
+                    <input 
+                      type="text" 
+                      id="subject"
+                      value={formData.subject}
+                      onChange={e => setFormData({...formData, subject: e.target.value})}
+                      className="peer w-full bg-transparent border-b border-gray-200 py-4 text-gray-900 text-lg focus:border-[#E32219] focus:outline-none transition-colors duration-300 placeholder-transparent"
+                      placeholder="Subject"
+                    />
+                    <label 
+                      htmlFor="subject"
+                      className="absolute left-0 -top-3.5 text-xs font-bold text-gray-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:tracking-normal peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#E32219] peer-focus:font-bold peer-focus:tracking-widest"
+                    >
+                      Subject / Company
+                    </label>
+                  </div>
                 </div>
 
                 <div className="group relative">
                   <textarea 
                     id="message"
                     rows="4"
+                    required
+                    value={formData.message}
+                    onChange={e => setFormData({...formData, message: e.target.value})}
                     className="peer w-full bg-transparent border-b border-gray-200 py-4 text-gray-900 text-lg focus:border-[#E32219] focus:outline-none transition-colors duration-300 placeholder-transparent resize-none"
                     placeholder="Message"
                   ></textarea>
@@ -227,11 +291,22 @@ export default function ContactSection() {
                   </label>
                 </div>
 
-                <div className="pt-8 flex justify-end">
-                   <button className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gray-900 hover:bg-[#E32219] text-white rounded-xl transition-all duration-500 shadow-xl hover:shadow-[#E32219]/30 overflow-hidden">
-                     <span className="relative z-10 text-xs font-bold uppercase tracking-[0.2em]">Send Message</span>
-                     <Send className="w-4 h-4 relative z-10 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                     <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out-quart"></div>
+                <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                   <div className="text-sm font-medium">
+                      {submitStatus === 'success' && <span className="text-green-600 flex items-center gap-2 animate-bounce">✓ Message Sent Successfully!</span>}
+                      {submitStatus === 'error' && <span className="text-red-600 flex items-center gap-2">✕ Failed to send. Please try again.</span>}
+                   </div>
+                   <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`group relative inline-flex items-center gap-3 px-10 py-5 rounded-xl transition-all duration-500 shadow-xl overflow-hidden
+                      ${submitStatus === 'success' ? 'bg-green-600' : 'bg-gray-900 hover:bg-[#E32219]'}`}
+                   >
+                     <span className="relative z-10 text-xs font-bold uppercase tracking-[0.2em]">
+                       {isSubmitting ? 'Processing...' : submitStatus === 'success' ? 'Thank You!' : 'Send Message'}
+                     </span>
+                     <Send className={`w-4 h-4 relative z-10 transform transition-transform duration-300 ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1 group-hover:-translate-y-1'}`} />
+                     <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out"></div>
                    </button>
                 </div>
 

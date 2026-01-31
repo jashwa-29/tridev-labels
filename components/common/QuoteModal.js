@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { X, Send, Store, User, Mail, Phone, FileText } from 'lucide-react';
+import { quoteService } from '@/services/quote.service';
 
 export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
   const modalRef = useRef(null);
@@ -15,6 +16,8 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
     company: '',
     details: `I'm interested in a quote for ${serviceTitle || 'your services'}.`
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
   // Reset details when serviceTitle changes
   useEffect(() => {
@@ -22,6 +25,39 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
        setFormData(prev => ({...prev, details: `I'm interested in a quote for ${serviceTitle}.`}));
     }
   }, [serviceTitle]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      await quoteService.submit({
+        ...formData,
+        service: serviceTitle,
+        source: 'service'
+      });
+      setSubmitStatus('success');
+      // Reset form on success
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        details: ''
+      });
+      // Optionally close modal after slight delay
+      setTimeout(() => {
+        onClose();
+        setSubmitStatus(null);
+      }, 2500);
+    } catch (err) {
+      console.error('Submission failed:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -52,10 +88,6 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
       }, modalRef);
       return () => ctx.revert();
     } else {
-      // Exit is handled by the caller typically unmounting, but if we want animate out we need a valid ref
-      // Usually requires an AnimatePresence equivalent or delay closing. 
-      // For simplicity in this step, we just rely on instant close or simple CSS transitions if handled by parent,
-      // but here we are mounting/unmounting. 
       document.body.style.overflow = '';
     }
   }, [isOpen]);
@@ -93,7 +125,7 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
                <h3 className="text-2xl md:text-3xl font-light text-gray-900">Request a Quote</h3>
             </div>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
                <div className="space-y-4">
                   <div className="form-item grid grid-cols-2 gap-4">
                      <div className="relative group">
@@ -101,6 +133,7 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
                         <input 
                            type="text" 
                            placeholder="Name" 
+                           required
                            className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:border-[#E32219] focus:bg-white transition-all"
                            value={formData.name}
                            onChange={e => setFormData({...formData, name: e.target.value})}
@@ -123,6 +156,7 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
                      <input 
                         type="email" 
                         placeholder="Work Email" 
+                        required
                         className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:border-[#E32219] focus:bg-white transition-all"
                         value={formData.email}
                         onChange={e => setFormData({...formData, email: e.target.value})}
@@ -134,6 +168,7 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
                      <input 
                         type="tel" 
                         placeholder="Phone Number" 
+                        required
                         className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:border-[#E32219] focus:bg-white transition-all"
                         value={formData.phone}
                         onChange={e => setFormData({...formData, phone: e.target.value})}
@@ -145,6 +180,7 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
                      <textarea 
                         rows="3"
                         placeholder="Project Details..." 
+                        required
                         className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:border-[#E32219] focus:bg-white transition-all resize-none"
                         value={formData.details}
                         onChange={e => setFormData({...formData, details: e.target.value})}
@@ -152,14 +188,26 @@ export default function QuoteModal({ isOpen, onClose, serviceTitle }) {
                   </div>
                </div>
 
-               <button className="form-item w-full py-4 bg-black text-white rounded-xl text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#E32219] transition-colors duration-300 flex items-center justify-center gap-2 group">
-                  Submit Request
-                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+               <button 
+                type="submit"
+                disabled={isSubmitting}
+                className={`form-item w-full py-4 rounded-xl text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 group
+                  ${submitStatus === 'success' ? 'bg-green-600 text-white' : 
+                    submitStatus === 'error' ? 'bg-red-600 text-white' : 
+                    'bg-black text-white hover:bg-[#E32219]'}`}
+               >
+                  {isSubmitting ? 'Sending Request...' : 
+                   submitStatus === 'success' ? 'Request Sent!' : 
+                   submitStatus === 'error' ? 'Failed to Send' : 
+                   'Submit Request'}
+                  <Send className={`w-4 h-4 transition-transform ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1 group-hover:-translate-y-1'}`} />
                </button>
             </form>
             
             <p className="form-item mt-6 text-center text-[10px] text-gray-400">
-               Protected by reCAPTCHA and our <a href="#" className="underline hover:text-gray-900">Privacy Policy</a>.
+               {submitStatus === 'success' ? 'Thank you! We will contact you shortly.' : 
+                submitStatus === 'error' ? 'Something went wrong. Please try again later.' : 
+                'Protected by secure encryption and our Privacy Policy.'}
             </p>
          </div>
       </div>
