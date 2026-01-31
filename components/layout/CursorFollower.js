@@ -15,23 +15,27 @@ export default function CursorFollower() {
     gsap.set(cursorRef.current, { xPercent: -50, yPercent: -50, opacity: 0 });
     gsap.set(followerRef.current, { xPercent: -50, yPercent: -50, opacity: 0 });
 
-    const moveCursor = (e) => {
-      // Immediate move for dot
-      gsap.to(cursorRef.current, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1, // very fast
-        opacity: 1,
-        ease: "power2.out"
-      });
+    const xSetCursor = gsap.quickSetter(cursorRef.current, "x", "px");
+    const ySetCursor = gsap.quickSetter(cursorRef.current, "y", "px");
+    const xSetFollower = gsap.quickSetter(followerRef.current, "x", "px");
+    const ySetFollower = gsap.quickSetter(followerRef.current, "y", "px");
 
-      // Laggy move for ring
+    const moveCursor = (e) => {
+      // Direct move for dot (opacity once)
+      if (cursorRef.current.style.opacity === '0') {
+        gsap.to([cursorRef.current, followerRef.current], { opacity: 1, duration: 0.3 });
+      }
+      
+      xSetCursor(e.clientX);
+      ySetCursor(e.clientY);
+
+      // Laggy move for ring - use gsap.to for the lag effect
       gsap.to(followerRef.current, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.8, // slower for elegance
-        opacity: 1,
-        ease: "power3.out"
+        duration: 0.6,
+        ease: "power3.out",
+        overwrite: "auto"
       });
     };
     

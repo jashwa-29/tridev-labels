@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import Image from 'next/image';
 
 export default function Preloader({ onComplete }) {
   const containerRef = useRef(null);
@@ -14,20 +15,20 @@ export default function Preloader({ onComplete }) {
       // Counter Animation
       const tl = gsap.timeline({
         onComplete: () => {
-          // Exit Animation - Snappy
+          // Exit Animation - Ultra Snappy
           gsap.to(containerRef.current, {
             yPercent: -100,
-            duration: 0.5,
-            ease: "circ.inOut",
+            duration: 0.4,
+            ease: "expo.inOut",
             onComplete: onComplete
           });
         }
       });
 
-      // Animate counter - Ultra Fast
+      // Animate counter - Faster
       tl.to(counterRef.current, {
         innerText: 100,
-        duration: 0.6, 
+        duration: 0.4, 
         snap: { innerText: 1 },
         ease: "none",
         onUpdate: function() {
@@ -39,18 +40,20 @@ export default function Preloader({ onComplete }) {
 
       // Logo Reveal - Synchronized
       tl.fromTo(logoRef.current, 
-        { scale: 0.95, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" }, 
+        { scale: 0.98, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.3, ease: "power2.out" }, 
         0
       );
 
       // Text Reveal
-      tl.from(textRef.current, {
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-      }, "-=1.5");
+      if (textRef.current) {
+        tl.from(textRef.current, {
+          y: 10,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.out"
+        }, "-=0.3");
+      }
 
     }, containerRef);
 
@@ -63,12 +66,16 @@ export default function Preloader({ onComplete }) {
       className="fixed inset-0 z-100 bg-white flex flex-col items-center justify-center text-white"
     >
       <div className="relative flex flex-col items-center gap-6">
-        {/* Logo Image */}
+        {/* Logo Image - Optimized */}
         <div ref={logoRef} className="relative w-48 md:w-64 aspect-3/1 flex items-center justify-center">
-           <img 
+           <Image 
              src="/tridev-logo.png" 
              alt="Tridev Labels Logo" 
-             className="w-full h-auto object-contain "
+             width={256}
+             height={85}
+             priority
+             fetchPriority="high"
+             className="w-full h-auto object-contain"
            />
         </div>
 

@@ -64,6 +64,7 @@ export default function WhyChooseSection() {
           src="https://peppy-moonbeam-9fe49c.netlify.app/images/background-img-1.jpeg"
           alt="Why Choose Us Background"
           fill
+          loading="lazy"
           sizes="100vw"
           className="object-cover"
         />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Printer, PackageCheck, ClipboardCheck } from 'lucide-react';
@@ -15,14 +15,16 @@ export default function OurProcessSection() {
   const [isMobile, setIsMobile] = useState(false);
   const [activeMobileIndex, setActiveMobileIndex] = useState(0);
 
-  const handleMobileScroll = (e) => {
+  const handleMobileScroll = useCallback((e) => {
     const scrollPosition = e.target.scrollLeft;
-    const itemWidth = e.target.offsetWidth * 0.85 + 24; // Width (85vw) + gap (24px/6 units)
+    // Cache the offsetWidth to avoid reflows
+    const width = e.target.offsetWidth;
+    const itemWidth = width * 0.85 + 24; 
     const newIndex = Math.round(scrollPosition / itemWidth);
     if (newIndex !== activeMobileIndex) {
       setActiveMobileIndex(newIndex);
     }
-  };
+  }, [activeMobileIndex]);
 
   const steps = [
     {
@@ -189,7 +191,8 @@ export default function OurProcessSection() {
                 src={step.image} 
                 alt={step.title}
                 fill
-                sizes="85vw"
+                loading="lazy"
+                sizes="(max-width: 768px) 85vw, 400px"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div>
@@ -259,8 +262,9 @@ export default function OurProcessSection() {
                         src={step.image} 
                         alt={step.title}
                         fill
+                        loading="lazy"
                         sizes="(max-width: 1024px) 50vw, 450px"
-                        className="w-full h-full object-cover grayscale-20 group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                        className="w-full h-full object-cover grayscale-20 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
                       />
                       <div className="absolute top-8 right-8 flex gap-1 z-20">
                         <div className="w-1.5 h-1.5 rounded-full bg-white/50 backdrop-blur-md"></div>

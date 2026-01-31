@@ -72,8 +72,7 @@ export default function AboutSection() {
                 src="https://i.pinimg.com/1200x/ea/9e/20/ea9e205b68c315a7a39cd685d1800d1d.jpg" 
                 alt="Industrial Printing Press"
                 fill
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                sizes="(max-width: 768px) 100vw, 490px"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
@@ -84,7 +83,8 @@ export default function AboutSection() {
                 src="https://i.pinimg.com/1200x/14/d6/f3/14d6f3022120dcf6712edaa245e67653.jpg" 
                 alt="Digital Label Concept"
                 fill
-                sizes="(max-width: 768px) 50vw, 25vw"
+                loading="lazy"
+                sizes="(max-width: 768px) 50vw, 250px"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
@@ -95,7 +95,8 @@ export default function AboutSection() {
                 src="https://i.pinimg.com/1200x/04/28/b9/0428b900d699a1410449ae05ccb12aa4.jpg" 
                 alt="Quality Labels"
                 fill
-                sizes="(max-width: 768px) 50vw, 20vw"
+                loading="lazy"
+                sizes="(max-width: 768px) 50vw, 220px"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
@@ -106,7 +107,8 @@ export default function AboutSection() {
                 src="https://i.pinimg.com/736x/64/cb/80/64cb8086e52ef8f1096f3d14e6e4194c.jpg" 
                 alt="Detailed Texture"
                 fill
-                sizes="(max-width: 768px) 30vw, 15vw"
+                loading="lazy"
+                sizes="(max-width: 768px) 30vw, 180px"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
@@ -148,7 +150,7 @@ export default function AboutSection() {
                   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                 </div>
                 <div>
-                  <h4 className="text-gray-900 text-sm sm:text-base font-bold tracking-tight mb-1">Accredited Reliability</h4>
+                  <h3 className="text-gray-900 text-sm sm:text-base font-bold tracking-tight mb-1">Accredited Reliability</h3>
                   <p className="text-[11px] sm:text-sm text-gray-500 font-light leading-snug tracking-wide">ISO 9001:2015 Certified. No Minimum Order size.</p>
                 </div>
               </div>
@@ -158,7 +160,7 @@ export default function AboutSection() {
                   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
                 <div>
-                  <h4 className="text-gray-900 text-sm sm:text-base font-bold tracking-tight mb-1">Fast Industrial Delivery</h4>
+                  <h3 className="text-gray-900 text-sm sm:text-base font-bold tracking-tight mb-1">Fast Industrial Delivery</h3>
                   <p className="text-[11px] sm:text-sm text-gray-500 font-light leading-snug tracking-wide">Ships in 1–3 business days globally once approved.</p>
                 </div>
               </div>

@@ -109,7 +109,8 @@ export default function BlogsSection() {
                   src={featuredBlog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"} 
                   alt={featuredBlog.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 800px"
                   className="w-full h-full object-cover brightness-90 group-hover:brightness-100 group-hover:scale-105 transition-all duration-1000"
                 />
                 <div className="absolute top-6 left-6 px-4 py-1.5 bg-[#E32219] text-white text-[10px] font-bold uppercase tracking-widest rounded-sm z-10">
@@ -151,7 +152,8 @@ export default function BlogsSection() {
                           src={blog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"} 
                           alt={blog.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, 180px"
+                          loading="lazy"
+                          sizes="(max-width: 768px) 100vw, 200px"
                           className="w-full h-full object-cover brightness-95 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
                         />
                      </div>

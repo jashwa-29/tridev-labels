@@ -112,7 +112,8 @@ export default function FinishesGallery() {
                   src={finish.image} 
                   alt={finish.name}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 300px"
                   className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-1000"
                 />
                 

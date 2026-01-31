@@ -101,7 +101,7 @@ function ReyndersCard({ service, isActive, isAnyActive, onHover }) {
         isActive 
           ? 'shadow-2xl z-10' 
           : isAnyActive 
-            ? 'grayscale-[10%] hover:grayscale-0' 
+            ? 'grayscale-10 hover:grayscale-0' 
             : 'grayscale-0'
       }`}
     >
@@ -112,7 +112,8 @@ function ReyndersCard({ service, isActive, isAnyActive, onHover }) {
            src={service.image} 
            alt={service.title}
            fill
-           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+           loading="lazy"
+           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
            className="object-cover transition-opacity duration-500"
          />
       </div>
@@ -224,21 +225,21 @@ export default function SolutionsSection() {
         
         <div ref={headerRef} className="text-center max-w-5xl mx-auto mb-12 md:mb-20">
           <div className="flex items-center justify-center mb-6 md:mb-10">
-            <div className="h-px w-10 md:w-16 bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+            <div className="h-px w-10 md:w-16 bg-linear-to-r from-transparent via-gray-300 to-transparent"></div>
             <div className="mx-3 md:mx-5 text-[10px] md:text-xs font-medium uppercase tracking-[0.3em] md:tracking-[0.4em] text-gray-500 whitespace-nowrap">
               Tailored Solutions
             </div>
-            <div className="h-px w-10 md:w-16 bg-gradient-to-l from-transparent via-gray-300 to-transparent"></div>
+            <div className="h-px w-10 md:w-16 bg-linear-to-l from-transparent via-gray-300 to-transparent"></div>
           </div>
 
           <div className="relative mb-6 md:mb-10 flex flex-col items-center">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight leading-tight md:leading-[0.95] text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight leading-tight md:leading-[0.95] text-center">
               <span className="font-normal block md:inline">Precision Label</span>
               <span className="font-normal relative block md:inline mt-2 md:mt-0">
                 <span className="text-[#E32219] md:ml-4">Solutions</span>
-                <span className="absolute -bottom-2 left-1/4 right-1/4 md:left-0 md:right-0 h-px bg-gradient-to-r from-transparent via-[#E32219]/50 to-transparent"></span>
+                <span className="absolute -bottom-2 left-1/4 right-1/4 md:left-0 md:right-0 h-px bg-linear-to-r from-transparent via-[#E32219]/50 to-transparent"></span>
               </span>
-            </h1>
+            </h2>
           </div>
 
           <div className="max-w-2xl mx-auto mt-8 md:mt-12">

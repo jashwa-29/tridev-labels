@@ -101,7 +101,7 @@ export default function FooterSection() {
 
           {/* Column 2: Solutions */}
           <div>
-            <h4 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">Industrial Solutions</h4>
+            <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">Industrial Solutions</h3>
             <ul className="space-y-4">
               {footerLinks.solutions.map((link) => (
                 <li key={link.name}>
@@ -116,7 +116,7 @@ export default function FooterSection() {
 
           {/* Column 3: Company */}
           <div>
-            <h4 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">Trridev Group</h4>
+            <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">Trridev Group</h3>
             <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -130,7 +130,7 @@ export default function FooterSection() {
 
           {/* Column 4: Contact Engineering */}
           <div>
-            <h4 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">Contact Engineering</h4>
+            <h3 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">Contact Engineering</h3>
             <ul className="space-y-6">
               <li className="flex gap-4 items-start group">
                 <div className="w-10 h-10 shrink-0 rounded-lg bg-white/5 flex items-center justify-center text-[#E32219] group-hover:bg-[#E32219]/20 transition-all duration-300">

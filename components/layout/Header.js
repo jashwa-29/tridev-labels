@@ -134,11 +134,12 @@ export default function Header() {
             <Image 
               src="/tridev-logo.png" 
               alt="Tridev Labels Logo" 
-              width={240}
-              height={64}
+              width={180}
+              height={48}
               priority
               fetchPriority="high"
-              sizes="(max-width: 768px) 150px, 240px"
+              decoding="sync"
+              sizes="(max-width: 768px) 120px, 180px"
               className={`h-7 sm:h-8 md:h-9 lg:h-10 xl:h-12 w-auto object-contain transition-all duration-500 ${(isScrolled || isMobileMenuOpen) ? 'brightness-100' : ''}`}
             />
           </Link>
@@ -244,7 +245,7 @@ export default function Header() {
           <button 
             className="lg:hidden relative z-50 p-2 focus:outline-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
+            aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
           >
             <div className="space-y-1.5 w-6 sm:w-7">
                 <span className={`block h-[2px] transition-all duration-300 ${isMobileMenuOpen ? 'w-full rotate-45 translate-y-2 bg-white' : `w-full ${isScrolled ? 'bg-black' : 'bg-white'}`}`}></span>
@@ -312,7 +313,7 @@ export default function Header() {
             {/* Bottom Contact Bar - Re-added for utility but made elegant */}
             <div className="mt-12 pt-10 border-t border-white/5 flex flex-col sm:flex-row justify-between gap-10">
                <div className="space-y-4">
-                  <h4 className="text-[#E32219] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Engage</h4>
+                  <h3 className="text-[#E32219] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Engage</h3>
                   <div className="flex flex-col gap-2">
                     <p className="text-white/50 hover:text-white transition-colors text-sm font-light">+91 96000 07995</p>
                     <p className="text-white/30 text-xs font-light lowercase">Kiruba@trridevlabelss.com</p>
@@ -320,7 +321,7 @@ export default function Header() {
                </div>
                
                <div className="space-y-4 max-w-[200px]">
-                  <h4 className="text-[#E32219] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Location</h4>
+                  <h3 className="text-[#E32219] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Location</h3>
                   <p className="text-white/40 text-[11px] leading-relaxed font-light">
                     Kottivakkam, Chennai - 600041
                   </p>

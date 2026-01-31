@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Quote, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -95,7 +96,7 @@ export default function Testimonials() {
                     className="absolute inset-0 bg-[#E32219]"
                   />
                 </div>
-                <div className="flex gap-4 text-gray-300 text-xs font-bold uppercase tracking-widest pl-2">
+                <div className="flex gap-4 text-gray-500 text-xs font-bold uppercase tracking-widest pl-2">
                   {testimonials.map((_, i) => (
                     <span key={i} className={`transition-colors duration-300 ${current === i ? "text-gray-900" : ""}`}>
                       {String(i + 1).padStart(2, '0')}
@@ -152,9 +153,12 @@ export default function Testimonials() {
                     >
                       {/* Active Testimonial Card */}
                       <div className="w-full md:w-[70%] h-full shrink-0 relative rounded-4xl overflow-hidden group shadow-2xl bg-gray-900 border border-gray-100/10">
-                        <img 
+                        <Image 
                           src={testimonials[current].image} 
                           alt={testimonials[current].brand}
+                          fill
+                          loading="lazy"
+                          sizes="(max-width: 768px) 100vw, 600px"
                           className="absolute inset-0 w-full h-full object-cover brightness-75 transition-transform duration-[3s] group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent"></div>
@@ -192,9 +196,12 @@ export default function Testimonials() {
 
                       {/* Peek Next Card */}
                       <div className="hidden md:block w-full md:w-[30%] h-full shrink-0 relative rounded-4xl overflow-hidden group/peek opacity-40 hover:opacity-60 transition-all duration-500 cursor-pointer bg-gray-200" onClick={next}>
-                        <img 
+                        <Image 
                           src={testimonials[(current + 1) % testimonials.length].image} 
                           alt="Next Success"
+                          fill
+                          loading="lazy"
+                          sizes="300px"
                           className="absolute inset-0 w-full h-full object-cover brightness-75"
                         />
                         <div className="absolute inset-0 bg-black/40"></div>
@@ -213,12 +220,14 @@ export default function Testimonials() {
                <div className="absolute -bottom-8 right-0 lg:right-10 flex gap-4 z-40">
                   <button 
                     onClick={prev}
+                    aria-label="Previous testimonial"
                     className="w-14 h-14 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#E32219] hover:border-[#E32219] transition-all duration-300 shadow-lg"
                   >
                     <ChevronLeft size={24} strokeWidth={1.5} />
                   </button>
                   <button 
                     onClick={next}
+                    aria-label="Next testimonial"
                     className="w-14 h-14 rounded-full bg-gray-900 shadow-[0_0_15px_rgba(227,34,25,0.3)] text-white flex items-center justify-center hover:bg-[#E32219] transition-all duration-300"
                   >
                     <ChevronRight size={24} strokeWidth={1.5} />
