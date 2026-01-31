@@ -180,10 +180,10 @@ export default function AboutApproach() {
              <div className="approach-card p-12 bg-white rounded-[32px] border border-gray-200 shadow-2xl shadow-gray-100/50 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#E32219]/5 rounded-full blur-3xl group-hover:bg-[#E32219]/10 transition-all"></div>
                 <div className="relative z-10 space-y-8">
-                   <div className="flex items-center gap-3">
-                      <span className="w-8 h-px bg-[#E32219]"></span>
-                      <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Methodology</span>
-                   </div>
+                    <div className="flex items-center gap-3">
+                       <span className="w-8 h-px bg-[#E32219]"></span>
+                       <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">Methodology</span>
+                    </div>
                    <h2 className="text-6xl font-light text-gray-900 leading-[0.95] tracking-tighter">
                       Beyond <br/> <span className="text-[#E32219] font-medium">Standard.</span>
                    </h2>
@@ -239,7 +239,7 @@ export default function AboutApproach() {
                 <p className="text-gray-400 font-light leading-relaxed mb-8">
                    Every label substrate we source undergoes exhaustive laboratory testing for chemical resistance, humidity tolerance, and extreme temperature variations to guarantee performance in any industrial environment.
                 </p>
-                <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#E32219]">
+                <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#ff4b42]">
                    Technical Specs <ArrowUpRight className="w-4 h-4" />
                 </div>
              </div>
@@ -276,7 +276,7 @@ export default function AboutApproach() {
               <div className="approach-card p-10 bg-white rounded-[32px] border border-gray-100 shadow-lg group hover:border-[#E32219]/30 transition-colors">
                 <div className="flex items-center gap-4 mb-4">
                    <span className="text-4xl font-bold text-[#E32219]">16+</span>
-                   <span className="text-xs font-bold uppercase tracking-widest text-gray-400 leading-tight">Years Of <br/> Excellence</span>
+                   <span className="text-xs font-bold uppercase tracking-widest text-gray-500 leading-tight">Years Of <br/> Excellence</span>
                 </div>
                 <p className="text-gray-500 font-light text-sm leading-relaxed">
                    Since our inception in 2008, we have evolved from a small letterpress unit into a 20,000 sq ft industrial powerhouse trusted by global pharmaceutical and beverage institutions.

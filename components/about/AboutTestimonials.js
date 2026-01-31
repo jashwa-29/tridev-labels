@@ -73,7 +73,7 @@ export default function AboutTestimonials() {
             <div className="space-y-6">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-px bg-[#E32219]"></div>
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Institutional Feedback</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">Institutional Feedback</span>
               </div>
               
               <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tighter text-gray-900 leading-[0.9]">
@@ -106,7 +106,7 @@ export default function AboutTestimonials() {
                </div>
                <div>
                   <div className="text-gray-900 font-bold tracking-tight text-xl">4.9 / 5.0</div>
-                  <div className="text-gray-400 text-[10px] uppercase tracking-[0.2em] font-medium">B2B Satisfaction Index</div>
+                  <div className="text-gray-500 text-[10px] uppercase tracking-[0.2em] font-medium">B2B Satisfaction Index</div>
                </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ export default function AboutTestimonials() {
                   <Quote className="absolute -top-6 -left-6 text-[#E32219] w-12 h-12" />
                   
                   <div className="space-y-10">
-                    <span className="inline-block px-4 py-1.5 border border-[#E32219]/30 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-[#E32219] bg-[#E32219]/5">
+                    <span className="inline-block px-4 py-1.5 border border-[#E32219]/30 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-[#d6201a] bg-[#E32219]/5">
                       {testimonials[activeIndex].tag}
                     </span>
 
@@ -138,7 +138,7 @@ export default function AboutTestimonials() {
 
                     <div className="flex items-center gap-6 pt-10 border-t border-gray-50">
                       <div className="space-y-1">
-                        <h4 className="text-gray-900 font-bold text-xl tracking-tighter leading-none">{testimonials[activeIndex].author}</h4>
+                        <h3 className="text-gray-900 font-bold text-xl tracking-tighter leading-none">{testimonials[activeIndex].author}</h3>
                         <p className="text-gray-400 text-xs uppercase tracking-widest font-medium">
                           {testimonials[activeIndex].position} — <span className="text-[#E32219]">{testimonials[activeIndex].company}</span>
                         </p>
@@ -153,20 +153,22 @@ export default function AboutTestimonials() {
             <div className="absolute -bottom-16 left-0 flex items-center gap-4">
               <button 
                 onClick={prev}
-                className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 hover:text-[#E32219] hover:border-[#E32219]/30 hover:bg-gray-50 transition-all"
+                aria-label="Previous testimonial"
+                className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[#E32219] hover:border-[#E32219]/30 hover:bg-gray-50 transition-all"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button 
                 onClick={next}
+                aria-label="Next testimonial"
                 className="w-14 h-14 rounded-full bg-gray-900 flex items-center justify-center text-white hover:bg-[#E32219] transition-all shadow-2xl shadow-[#E32219]/20"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
               <div className="ml-4 flex items-center gap-2">
                  <span className="text-gray-900 font-bold text-xs tracking-widest">0{activeIndex + 1}</span>
-                 <div className="w-8 h-px bg-gray-300"></div>
-                 <span className="text-gray-300 font-bold text-xs tracking-widest">0{testimonials.length}</span>
+                 <div className="w-8 h-px bg-gray-400"></div>
+                 <span className="text-gray-500 font-bold text-xs tracking-widest">0{testimonials.length}</span>
               </div>
             </div>
 

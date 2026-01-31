@@ -143,7 +143,7 @@ export default function HistoryTimeline() {
         <div className="max-w-4xl mx-auto text-center mb-16 md:mb-24">
           <div className="inline-flex items-center gap-4 mb-8">
             <span className="w-12 h-px bg-[#E32219]"></span>
-            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-400">Chronicle // 16-Year Journey</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-500">Chronicle // 16-Year Journey</span>
             <span className="w-12 h-px bg-[#E32219]"></span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-light text-gray-900 mb-8 leading-tight tracking-tighter">
@@ -192,7 +192,10 @@ export default function HistoryTimeline() {
                     </p>
 
                     <div className={`flex ${i % 2 === 0 ? "justify-end" : "justify-start"} pt-4`}>
-                      <div className="w-9 h-9 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[#E32219] transition-colors cursor-pointer">
+                      <div 
+                        className="w-9 h-9 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[#E32219] transition-colors cursor-pointer"
+                        aria-label={`View details for ${item.year}`}
+                      >
                         <ArrowUpRight className="w-4 h-4" />
                       </div>
                     </div>

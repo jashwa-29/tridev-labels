@@ -73,7 +73,7 @@ export default function AboutMetrics() {
         <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
           <div className="inline-flex items-center gap-3 mb-6">
             <span className="w-10 h-px bg-[#E32219]"></span>
-            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Section 02 // Performance</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">Section 02 // Performance</span>
             <span className="w-10 h-px bg-[#E32219]"></span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-light text-gray-900 mb-8 leading-tight tracking-tighter">
@@ -102,7 +102,7 @@ export default function AboutMetrics() {
                 
                 <div className="space-y-6 relative z-10">
                   <div className="flex justify-between items-start">
-                    <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest leading-none group-hover:text-gray-500 transition-colors">P.MT-{m.id}</span>
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest leading-none group-hover:text-gray-600 transition-colors">P.MT-{m.id}</span>
                     <div className="relative">
                       <div className="w-2.5 h-2.5 rounded-full bg-[#E32219] opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-[0_0_15px_rgba(227,34,25,0.8)]"></div>
                       <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-[#E32219] animate-ping opacity-0 group-hover:opacity-40 transition-opacity"></div>
@@ -116,8 +116,8 @@ export default function AboutMetrics() {
                 </div>
 
                 <div className="mt-12 space-y-2 relative z-10">
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-[0.2em] group-hover:text-[#E32219] transition-colors">{m.label}</h4>
-                  <p className="text-gray-400 text-[10px] font-medium uppercase tracking-[0.15em] leading-relaxed">
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-[0.2em] group-hover:text-[#E32219] transition-colors">{m.label}</h3>
+                  <p className="text-gray-500 text-[10px] font-medium uppercase tracking-[0.15em] leading-relaxed">
                     {m.sub}
                   </p>
                 </div>
