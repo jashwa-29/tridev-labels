@@ -48,8 +48,8 @@ export default function ExportMetrics() {
                 <span className="text-[#E32219] text-3xl font-light">+</span>
               </div>
               <div>
-                <h4 className="text-sm font-bold text-gray-400 uppercase tracking-[0.3em]">{s.label}</h4>
-                <p className="text-[10px] text-gray-600 uppercase tracking-widest mt-2">{s.sub}</p>
+                <h3 className="text-sm font-bold text-gray-200 uppercase tracking-[0.3em]">{s.label}</h3>
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-2">{s.sub}</p>
               </div>
             </div>
           ))}

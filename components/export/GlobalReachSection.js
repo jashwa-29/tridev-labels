@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin, Plane, Award } from 'lucide-react';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,11 +30,15 @@ export default function GlobalReachSection() {
 
   return (
     <section ref={sectionRef} className="relative py-24 md:py-40 overflow-hidden bg-gray-900">
-      <div 
-        ref={bgRef}
-        className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=2000')` }}
-      ></div>
+      <div className="absolute inset-0 z-0 opacity-40">
+        <Image 
+          src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" 
+          alt="Global Logistics Background"
+          fill
+          loading="lazy"
+          className="object-cover"
+        />
+      </div>
       <div className="absolute inset-0 bg-linear-to-b from-gray-900 via-gray-900/40 to-gray-900 z-10"></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-20">
@@ -49,7 +54,7 @@ export default function GlobalReachSection() {
             <span className="text-[#E32219] font-medium italic">Across The World.</span>
           </h2>
           
-          <p className="text-gray-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-gray-200 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
             As the most trusted label exporter in India, we provide labelling solutions to businesses across different global markets, irrespective of the size and the industry. After all, art doesn't have boundaries!
           </p>
 

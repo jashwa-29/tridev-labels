@@ -50,7 +50,6 @@ export default function ExportProcess() {
           clearProps: "all"
         }
       );
-      ScrollTrigger.refresh();
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -60,7 +59,7 @@ export default function ExportProcess() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center mb-24">
           <div className="flex justify-center mb-6">
-            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#E32219]">Strategic Workflow</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#d6201a]">Strategic Workflow</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-none mb-8">
             Our Export <span className="font-medium">Protocol.</span>
@@ -73,13 +72,13 @@ export default function ExportProcess() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
             {steps.map((step, i) => (
-              <div key={i} className="step-node group bg-white p-10 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500" style={{ opacity: 0 }}>
+              <div key={i} className="step-node group bg-white p-10 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500">
                 <div className="w-16 h-16 rounded-2xl bg-[#E32219] flex items-center justify-center text-white mb-8 shadow-lg shadow-[#E32219]/20 transform group-hover:rotate-6 transition-transform">
                   {step.icon}
                 </div>
-                <span className="text-[10px] font-black text-gray-200 block mb-4 tracking-tighter italic">STEP 0{i + 1}</span>
+                <span className="text-[10px] font-black text-gray-300 block mb-4 tracking-tighter italic">STEP 0{i + 1}</span>
                 <h3 className="text-xl font-bold text-gray-900 mb-4 tracking-tight group-hover:text-[#E32219] transition-colors">{step.title}</h3>
-                <p className="text-gray-400 text-sm font-light leading-relaxed">
+                <p className="text-gray-500 text-sm font-light leading-relaxed">
                   {step.desc}
                 </p>
               </div>

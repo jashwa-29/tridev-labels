@@ -42,22 +42,22 @@ export default function ExportFAQ() {
               <div className="p-8 bg-gray-50 rounded-[32px] border border-gray-100 flex items-start gap-6 group hover:bg-white hover:shadow-xl transition-all">
                 <CreditCard className="w-10 h-10 text-[#E32219]" />
                 <div>
-                  <h4 className="font-bold text-gray-900 group-hover:text-[#E32219] transition-colors">Secure Shopping</h4>
-                  <p className="text-sm text-gray-400 font-light mt-1">Credit card safety is assured through high-level encryption.</p>
+                  <h3 className="font-bold text-gray-900 group-hover:text-[#E32219] transition-colors">Secure Shopping</h3>
+                  <p className="text-sm text-gray-500 font-light mt-1">Credit card safety is assured through high-level encryption.</p>
                 </div>
               </div>
               <div className="p-8 bg-gray-50 rounded-[32px] border border-gray-100 flex items-start gap-6 group hover:bg-white hover:shadow-xl transition-all">
                 <ShieldCheck className="w-10 h-10 text-[#E32219]" />
                 <div>
-                  <h4 className="font-bold text-gray-900 group-hover:text-[#E32219] transition-colors">Guaranteed Quality</h4>
-                  <p className="text-sm text-gray-400 font-light mt-1">Mistakes are corrected at no charge. Fully insured shipments.</p>
+                  <h3 className="font-bold text-gray-900 group-hover:text-[#E32219] transition-colors">Guaranteed Quality</h3>
+                  <p className="text-sm text-gray-500 font-light mt-1">Mistakes are corrected at no charge. Fully insured shipments.</p>
                 </div>
               </div>
               <div className="p-8 bg-gray-50 rounded-[32px] border border-gray-100 flex items-start gap-6 group hover:bg-white hover:shadow-xl transition-all">
                 <Headphones className="w-10 h-10 text-[#E32219]" />
                 <div>
-                  <h4 className="font-bold text-gray-900 group-hover:text-[#E32219] transition-colors">Fast Response</h4>
-                  <p className="text-sm text-gray-400 font-light mt-1">Our international department answers emails quickly and accurately.</p>
+                  <h3 className="font-bold text-gray-900 group-hover:text-[#E32219] transition-colors">Fast Response</h3>
+                  <p className="text-sm text-gray-500 font-light mt-1">Our international department answers emails quickly and accurately.</p>
                 </div>
               </div>
             </div>

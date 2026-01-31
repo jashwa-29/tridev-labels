@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Globe, ShieldCheck, Zap } from 'lucide-react';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +28,6 @@ export default function ExportIntro() {
           clearProps: "all"
         }
       );
-      ScrollTrigger.refresh();
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -36,10 +36,10 @@ export default function ExportIntro() {
     <section ref={sectionRef} className="py-20 md:py-32 overflow-hidden bg-white">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8 intro-card" style={{ opacity: 0 }}>
+          <div className="space-y-8 intro-card">
             <div className="inline-flex items-center gap-3">
               <span className="w-10 h-px bg-[#E32219]"></span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Institutional Philosophy</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">Institutional Philosophy</span>
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tighter text-gray-900 leading-[0.9]">
@@ -56,8 +56,8 @@ export default function ExportIntro() {
                   <Globe className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">National Reach</h4>
-                  <p className="text-gray-400 text-xs mt-1">Local touch across the country.</p>
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest">National Reach</h3>
+                  <p className="text-gray-500 text-xs mt-1">Local touch across the country.</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -65,24 +65,27 @@ export default function ExportIntro() {
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Expert Care</h4>
-                  <p className="text-gray-400 text-xs mt-1">First-hand press experience.</p>
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Expert Care</h3>
+                  <p className="text-gray-500 text-xs mt-1">First-hand press experience.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="relative intro-card" style={{ opacity: 0 }}>
+          <div className="relative intro-card">
             <div className="aspect-square rounded-[40px] overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=1000" 
+              <Image 
+                src="https://images.unsplash.com/photo-1578575437130-527eed3abbec" 
                 alt="Global Logistics" 
+                fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-1000"
               />
             </div>
             <div className="absolute -bottom-10 -left-10 bg-[#050505] p-10 rounded-[32px] text-white shadow-2xl hidden md:block max-w-xs">
               <Zap className="w-8 h-8 text-[#E32219] mb-4" />
-              <p className="text-sm font-light leading-relaxed text-gray-400">
+              <p className="text-sm font-light leading-relaxed text-gray-300">
                 Our customer service team members have printing press experience giving you first-hand knowledge on what needs to be done.
               </p>
             </div>

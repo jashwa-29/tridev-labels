@@ -1,14 +1,13 @@
 "use client";
 
 import PageHeader from '@/components/common/PageHeader';
-import dynamic from 'next/dynamic';
 
-const ExportIntro = dynamic(() => import('@/components/export/ExportIntro'), { ssr: false });
-const SpecialtyCapabilities = dynamic(() => import('@/components/export/SpecialtyCapabilities'), { ssr: false });
-const GlobalReachSection = dynamic(() => import('@/components/export/GlobalReachSection'), { ssr: false });
-const ExportMetrics = dynamic(() => import('@/components/export/ExportMetrics'), { ssr: false });
-const ExportProcess = dynamic(() => import('@/components/export/ExportProcess'), { ssr: false });
-const ExportFAQ = dynamic(() => import('@/components/export/ExportFAQ'), { ssr: false });
+import ExportIntro from '@/components/export/ExportIntro';
+import SpecialtyCapabilities from '@/components/export/SpecialtyCapabilities';
+import GlobalReachSection from '@/components/export/GlobalReachSection';
+import ExportMetrics from '@/components/export/ExportMetrics';
+import ExportProcess from '@/components/export/ExportProcess';
+import ExportFAQ from '@/components/export/ExportFAQ';
 
 export default function ExportPage() {
   return (

@@ -60,7 +60,7 @@ export default function PageHeader({
             fill
             priority
             fetchPriority="high"
-            decoding="async"
+            decoding="sync"
             className="object-cover"
             sizes="100vw"
           />
