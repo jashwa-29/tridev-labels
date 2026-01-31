@@ -78,7 +78,7 @@ export default function FooterSection() {
                 alt="Trridev Logo" 
                 width={240}
                 height={64}
-                sizes="240px"
+                sizes="(max-width: 768px) 180px, 240px"
                 className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
               />
             </Link>

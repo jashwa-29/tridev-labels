@@ -65,7 +65,7 @@ export default function WhyChooseSection() {
           alt="Why Choose Us Background"
           fill
           loading="lazy"
-          sizes="100vw"
+          sizes="(max-width: 1200px) 100vw, 1920px"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/70"></div>
@@ -83,9 +83,9 @@ export default function WhyChooseSection() {
             <div className="h-px w-8 bg-[#E32219]"></div>
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-8 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-8 leading-tight">
             Excellence in <span className="font-medium text-[#E32219]">Every Label</span>
-          </h1>
+          </h2>
           
           {/* Why Choose Us Paragraph */}
           <div className="max-w-3xl mx-auto mb-12">

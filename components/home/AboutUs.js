@@ -72,7 +72,7 @@ export default function AboutSection() {
                 src="https://i.pinimg.com/1200x/ea/9e/20/ea9e205b68c315a7a39cd685d1800d1d.jpg" 
                 alt="Industrial Printing Press"
                 fill
-                sizes="(max-width: 768px) 100vw, 490px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>

@@ -18,7 +18,7 @@ export default function Preloader({ onComplete }) {
           // Exit Animation - Ultra Snappy
           gsap.to(containerRef.current, {
             yPercent: -100,
-            duration: 0.4,
+            duration: 0.3,
             ease: "expo.inOut",
             onComplete: onComplete
           });
@@ -28,7 +28,7 @@ export default function Preloader({ onComplete }) {
       // Animate counter - Faster
       tl.to(counterRef.current, {
         innerText: 100,
-        duration: 0.4, 
+        duration: 0.3, 
         snap: { innerText: 1 },
         ease: "none",
         onUpdate: function() {
@@ -75,6 +75,7 @@ export default function Preloader({ onComplete }) {
              height={85}
              priority
              fetchPriority="high"
+             sizes="(max-width: 768px) 192px, 256px"
              className="w-full h-auto object-contain"
            />
         </div>
