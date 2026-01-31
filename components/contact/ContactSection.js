@@ -302,10 +302,10 @@ export default function ContactSection() {
                     className={`group relative inline-flex items-center gap-3 px-10 py-5 rounded-xl transition-all duration-500 shadow-xl overflow-hidden
                       ${submitStatus === 'success' ? 'bg-green-600' : 'bg-gray-900 hover:bg-[#E32219]'}`}
                    >
-                     <span className="relative z-10 text-xs font-bold uppercase tracking-[0.2em]">
+                     <span className="relative z-10 text-xs font-bold uppercase text-white tracking-[0.2em]">
                        {isSubmitting ? 'Processing...' : submitStatus === 'success' ? 'Thank You!' : 'Send Message'}
                      </span>
-                     <Send className={`w-4 h-4 relative z-10 transform transition-transform duration-300 ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1 group-hover:-translate-y-1'}`} />
+                     <Send className={`w-4 h-4 relative z-10 transform text-white transition-transform duration-300 ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1 group-hover:-translate-y-1'}`} />
                      <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out"></div>
                    </button>
                 </div>
