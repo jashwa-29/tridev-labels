@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { format } from 'date-fns';
 import { ArrowLeft, Calendar, User, Tag, Share2, Facebook, Twitter, Linkedin, Copy } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import PageHeader from '@/components/common/PageHeader';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -57,10 +58,12 @@ export default function BlogContent({ blog }) {
       {/* Featured Image */}
       <div className="container mx-auto px-4 max-w-6xl -mt-20 relative z-20 mb-16 md:mb-24">
         <div className="aspect-21/9 md:aspect-[3/1.2] w-full overflow-hidden rounded-4xl shadow-2xl relative border-4 border-white">
-          <img 
-            src={blog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=2000"} 
+          <Image 
+            src={blog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0"} 
             alt={blog.title} 
-            className="blog-featured-image w-full h-full object-cover"
+            fill
+            priority
+            className="blog-featured-image object-cover"
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
@@ -70,15 +73,15 @@ export default function BlogContent({ blog }) {
          
          {/* Vertical Share Bar - Sticky Desktop */}
          <div className="hidden xl:flex flex-col gap-6 absolute left-[-100px] top-0 sticky-share opacity-0">
-            <div className="text-[10px] font-bold uppercase tracking-widest text-gray-300 -rotate-90 origin-center translate-y-8">Share</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 -rotate-90 origin-center translate-y-8">Share</div>
             <div className="w-px h-12 bg-gray-200 mx-auto mt-8"></div>
-            <button className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:border-[#E32219] hover:text-white hover:bg-[#E32219] transition-all shadow-sm">
+            <button aria-label="Share on LinkedIn" className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:border-[#E32219] hover:text-white hover:bg-[#E32219] transition-all shadow-sm">
                <Linkedin className="w-4 h-4" />
             </button>
-            <button className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:border-[#E32219] hover:text-white hover:bg-[#E32219] transition-all shadow-sm">
+            <button aria-label="Share on Twitter" className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:border-[#E32219] hover:text-white hover:bg-[#E32219] transition-all shadow-sm">
                <Twitter className="w-4 h-4" />
             </button>
-            <button className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:border-[#E32219] hover:text-white hover:bg-[#E32219] transition-all shadow-sm">
+            <button aria-label="Copy link" className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:border-[#E32219] hover:text-white hover:bg-[#E32219] transition-all shadow-sm">
                <Copy className="w-4 h-4" />
             </button>
          </div>
@@ -180,12 +183,12 @@ export default function BlogContent({ blog }) {
                </div>
                
                <div className="flex items-center gap-4">
-                  <span className="text-xs font-bold uppercase tracking-widest text-gray-300">Share Article</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-gray-500">Share Article</span>
                   <div className="flex gap-2">
-                     <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#E32219] hover:text-white transition-all">
+                     <button aria-label="Share on Facebook" className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#E32219] hover:text-white transition-all">
                         <Facebook className="w-4 h-4" />
                      </button>
-                     <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#E32219] hover:text-white transition-all">
+                     <button aria-label="Share on LinkedIn" className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#E32219] hover:text-white transition-all">
                         <Linkedin className="w-4 h-4" />
                      </button>
                   </div>

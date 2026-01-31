@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, Loader2, Calendar, User, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import { blogService } from '@/services/blog.service';
@@ -106,7 +107,7 @@ export default function BlogListingPage() {
             <div ref={headerRef} className="max-w-4xl mx-auto mb-20 text-center">
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-[#E32219]"></div>
-                <span className="text-xs font-bold uppercase tracking-[0.4em] text-gray-400">
+                <span className="text-xs font-bold uppercase tracking-[0.4em] text-gray-500">
                   The Knowledge Base
                 </span>
                 <div className="h-px w-8 bg-[#E32219]"></div>
@@ -121,11 +122,11 @@ export default function BlogListingPage() {
           {loading ? (
             <div className="flex flex-col justify-center items-center h-[40vh] space-y-4">
               <Loader2 className="w-10 h-10 text-[#E32219] animate-spin stroke-[1.5px]" />
-              <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Decoding Data...</p>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Decoding Data...</p>
             </div>
           ) : blogs.length === 0 ? (
             <div className="text-center py-20">
-              <h3 className="text-2xl font-light text-gray-400 tracking-tight">Archives currently unpopulated.</h3>
+              <h3 className="text-2xl font-light text-gray-500 tracking-tight">Archives currently unpopulated.</h3>
             </div>
           ) : (
             <>
@@ -135,11 +136,13 @@ export default function BlogListingPage() {
                      <article className="flex flex-col h-full">
                        {/* High-End Image Container (Home Page Style) */}
                        <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-gray-50 shadow-xl shadow-black/3 mb-8">
-                         <motion.img 
-                           src={blog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1000"} 
-                           alt={blog.title} 
-                           className="w-full h-full object-cover brightness-95 group-hover:brightness-105 group-hover:scale-110 transition-all duration-1000"
-                         />
+                          <Image 
+                            src={blog.featuredImage || "https://images.unsplash.com/photo-1557804506-669a67965ba0"} 
+                            alt={blog.title} 
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover brightness-95 group-hover:brightness-105 group-hover:scale-110 transition-all duration-1000"
+                          />
                          
                          {/* Category Badge (Home Page Style) */}
                          <div className="absolute top-6 left-6 px-4 py-1.5 bg-[#E32219] text-white text-[9px] font-bold uppercase tracking-[0.2em] rounded-sm transform -translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
@@ -149,7 +152,7 @@ export default function BlogListingPage() {
 
                        {/* Refined Content */}
                        <div className="flex-1 flex flex-col">
-                         <div className="flex items-center gap-6 text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-4">
+                         <div className="flex items-center gap-6 text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-4">
                            <div className="flex items-center gap-2">
                              <Calendar size={12} className="text-[#E32219]" />
                              <span>{blog.publishedDate ? format(new Date(blog.publishedDate), 'MMM dd, yyyy') : 'Recent'}</span>
@@ -180,40 +183,43 @@ export default function BlogListingPage() {
                </div>
 
                {/* Home-Page Style Pagination */}
-               {totalPages > 1 && (
-                 <div className="mt-32 flex items-center justify-center gap-4">
-                    <button 
-                       onClick={() => handlePageChange(currentPage - 1)}
-                       disabled={currentPage === 1}
-                       className="p-5 rounded-full border border-gray-100 hover:border-[#E32219] text-gray-400 hover:text-[#E32219] transition-all disabled:opacity-20 disabled:cursor-not-allowed group shadow-sm hover:shadow-md"
-                    >
-                       <ChevronLeft className="w-5 h-5 transform group-hover:-translate-x-0.5 transition-transform" />
-                    </button>
-                    
-                    <div className="flex items-center gap-3">
-                       {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                          <button
-                             key={pageNum}
-                             onClick={() => handlePageChange(pageNum)}
-                             className={`w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500
-                               ${currentPage === pageNum 
-                                  ? 'bg-[#E32219] text-white shadow-xl shadow-[#E32219]/20' 
-                                  : 'bg-white text-gray-400 hover:bg-gray-50 border border-gray-100 hover:border-gray-200'}`}
-                          >
-                             {String(pageNum).padStart(2, '0')}
-                          </button>
-                       ))}
-                    </div>
+                {totalPages > 1 && (
+                  <div className="mt-32 flex items-center justify-center gap-4">
+                     <button 
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        aria-label="Previous page"
+                        className="p-5 rounded-full border border-gray-100 hover:border-[#E32219] text-gray-500 hover:text-[#E32219] transition-all disabled:opacity-20 disabled:cursor-not-allowed group shadow-sm hover:shadow-md"
+                     >
+                        <ChevronLeft className="w-5 h-5 transform group-hover:-translate-x-0.5 transition-transform" />
+                     </button>
+                     
+                     <div className="flex items-center gap-3">
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                           <button
+                              key={pageNum}
+                              onClick={() => handlePageChange(pageNum)}
+                              aria-label={`Go to page ${pageNum}`}
+                              className={`w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500
+                                ${currentPage === pageNum 
+                                   ? 'bg-[#E32219] text-white shadow-xl shadow-[#E32219]/20' 
+                                   : 'bg-white text-gray-500 hover:bg-gray-50 border border-gray-100 hover:border-gray-200'}`}
+                           >
+                              {String(pageNum).padStart(2, '0')}
+                           </button>
+                        ))}
+                     </div>
 
-                    <button 
-                       onClick={() => handlePageChange(currentPage + 1)}
-                       disabled={currentPage === totalPages}
-                       className="p-5 rounded-full border border-gray-100 hover:border-[#E32219] text-gray-400 hover:text-[#E32219] transition-all disabled:opacity-20 disabled:cursor-not-allowed group shadow-sm hover:shadow-md"
-                    >
-                       <ChevronRight className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-                 </div>
-               )}
+                     <button 
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                        aria-label="Next page"
+                        className="p-5 rounded-full border border-gray-100 hover:border-[#E32219] text-gray-500 hover:text-[#E32219] transition-all disabled:opacity-20 disabled:cursor-not-allowed group shadow-sm hover:shadow-md"
+                     >
+                        <ChevronRight className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" />
+                     </button>
+                  </div>
+                )}
             </>
           )}
         </div>
