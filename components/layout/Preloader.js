@@ -3,32 +3,27 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 
-export default function Preloader({ onComplete }) {
+export default function Preloader({ onComplete, isReady = true }) {
   const containerRef = useRef(null);
   const counterRef = useRef(null);
   const logoRef = useRef(null);
   const textRef = useRef(null);
-  const [count, setCount] = useState(0);
+  const [isCounterDone, setIsCounterDone] = useState(false);
+  const exitTriggered = useRef(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Counter Animation
       const tl = gsap.timeline({
         onComplete: () => {
-          // Exit Animation - Ultra Snappy
-          gsap.to(containerRef.current, {
-            yPercent: -100,
-            duration: 0.3,
-            ease: "expo.inOut",
-            onComplete: onComplete
-          });
+          setIsCounterDone(true);
         }
       });
 
       // Animate counter - Faster
       tl.to(counterRef.current, {
         innerText: 100,
-        duration: 0.3, 
+        duration: 0.4, 
         snap: { innerText: 1 },
         ease: "none",
         onUpdate: function() {
@@ -58,7 +53,20 @@ export default function Preloader({ onComplete }) {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [onComplete]);
+  }, []);
+
+  // Handle Exit Animation when both counter is done AND video is ready
+  useEffect(() => {
+    if (isCounterDone && isReady && !exitTriggered.current) {
+      exitTriggered.current = true;
+      gsap.to(containerRef.current, {
+        yPercent: -100,
+        duration: 0.5,
+        ease: "expo.inOut",
+        onComplete: onComplete
+      });
+    }
+  }, [isCounterDone, isReady, onComplete]);
 
   return (
     <div 

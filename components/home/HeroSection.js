@@ -93,7 +93,7 @@ export default function HeroSection() {
     <div ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#050505]">
       
       {/* High-End Cinematic Preloader */}
-      {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
+      {showPreloader && <Preloader onComplete={handlePreloaderComplete} isReady={isVideoLoaded} />}
 
       {/* Background Layer (LCP) */}
       <div ref={bgRef} className="absolute inset-0 z-0 h-[120%] -top-[10%] w-full">
@@ -106,7 +106,7 @@ export default function HeroSection() {
           fetchPriority="high"
           decoding="sync"
           sizes="100vw"
-          className={`object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+          className={`object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
         />
 
         <video 
@@ -115,9 +115,9 @@ export default function HeroSection() {
           loop 
           muted 
           playsInline
-          preload="metadata"
+          preload="auto"
           onLoadedData={() => setIsVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover contrast-[1.1] saturate-[0.8] z-0 pointer-events-none transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 w-full h-full object-cover contrast-[1.1] saturate-[0.8] z-0 pointer-events-none transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
         >
           <source src="/herosectionbgvideo.mp4" type="video/mp4" />
         </video>
